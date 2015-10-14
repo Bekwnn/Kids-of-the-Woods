@@ -5,16 +5,15 @@ using System.Collections.Generic;
 [Serializable]
 public class KBuffableStat
 {
-    [SerializeField] protected float baseValue;
-    protected float modifiedValue;
+    protected float _baseValue;
 
-    public float BaseValue
+    public float baseValue
     {
-        get { return baseValue; }
-        set { baseValue = value; UpdateValue(); }
+        get { return _baseValue; }
+        set { _baseValue = value; UpdateValue(); }
     }
 
-    public float ModifiedValue
+    public float modifiedValue
     {
         get;
         protected set;
@@ -24,11 +23,6 @@ public class KBuffableStat
     protected List<KStatModifier> additivePercModifiers;
     protected List<KStatModifier> multPercModifiers;
     protected List<KStatModifier> postFlatModifiers;
-
-    void Awake()
-    {
-        ModifiedValue = BaseValue;
-    }
 
     public void AddModifier(KStatModifier statBuff)
     {
@@ -84,16 +78,16 @@ public class KBuffableStat
             additivePercSum += mod.ModValue;
         }
 
-        ModifiedValue = (BaseValue + sumOfPreFlat) * (1 + additivePercSum);
+        modifiedValue = (baseValue + sumOfPreFlat) * (1 + additivePercSum);
 
         foreach (KStatModifier mod in multPercModifiers)
         {
-            ModifiedValue *= 1 + mod.ModValue;
+            modifiedValue *= 1 + mod.ModValue;
         }
 
         foreach (KStatModifier mod in postFlatModifiers)
         {
-            ModifiedValue += mod.ModValue;
+            modifiedValue += mod.ModValue;
         }
     }
 }

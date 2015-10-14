@@ -15,7 +15,6 @@ public class KCameraMovementComponent : MonoBehaviour
 
     // middle mouse drag around
     public Vector3 middleDragDownPosition;
-    public Plane defaultPlane; // replace with global later
     public bool bDraggingCamera;
 
     //values for disabling movement
@@ -28,11 +27,6 @@ public class KCameraMovementComponent : MonoBehaviour
     public float anchorTransitionSpeed;
     public float anchorMaxSpeed;
     protected Vector3 anchorVelocity;
-
-    void Awake()
-    {
-        defaultPlane = new Plane(Vector3.up, 0f);
-    }
 
     void Update()
     {
@@ -97,13 +91,13 @@ public class KCameraMovementComponent : MonoBehaviour
         float distToPlane;
         if (Input.GetMouseButtonDown(2))
         {
-            if (defaultPlane.Raycast(ray, out distToPlane))
+            if (KCameraPawn.defaultPlane.Raycast(ray, out distToPlane))
                 middleDragDownPosition = ray.GetPoint(distToPlane);
 
             return;
         }
 
-        if (defaultPlane.Raycast(ray, out distToPlane))
+        if (KCameraPawn.defaultPlane.Raycast(ray, out distToPlane))
         {
             Vector3 dragDiff = ray.GetPoint(distToPlane) - middleDragDownPosition;
             anchor.transform.position -= dragDiff;

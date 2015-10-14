@@ -4,6 +4,7 @@ using System.Collections;
 public class KUnit : MonoBehaviour
 {
     public GameObject selectionDecal;
+    public KUnitAI aiController;
 
     protected bool _bSelected;
     public bool bSelected

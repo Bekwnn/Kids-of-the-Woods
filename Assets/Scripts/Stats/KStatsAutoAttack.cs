@@ -7,4 +7,5 @@ public class KStatsAutoAttack : MonoBehaviour
     public KBuffableStat attackSpeed;
     public KBuffableStat criticalChance;
     public KBuffableStat criticalDamage;
+    public KBuffableStat attackRange;
 }

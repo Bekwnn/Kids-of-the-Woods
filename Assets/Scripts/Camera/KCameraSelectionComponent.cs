@@ -18,14 +18,6 @@ public class KCameraSelectionComponent : MonoBehaviour
     // height of the box select collision box
     public float BOXHEIGHT;
 
-    // clicks get raycast against this plane if they fail to strike anything
-    public static Plane defaultPlane;
-
-    void Awake()
-    {
-        defaultPlane = new Plane(Vector3.up, 0f);
-    }
-
     void Update()
     {
         if (cameraPawn.orderComponent == null || !cameraPawn.orderComponent.bTryingToCast)
@@ -57,7 +49,7 @@ public class KCameraSelectionComponent : MonoBehaviour
             cameraPawn.movementComponent.bCanZoom = false;
             buttonDownPosition = Input.mousePosition;
 
-            buttonDownWorld = ScreenPointToWorld(Input.mousePosition);
+            buttonDownWorld = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, Camera.main);
         }
 
         if (Input.GetMouseButton(0))
@@ -70,7 +62,7 @@ public class KCameraSelectionComponent : MonoBehaviour
         {
             Debug.Log((buttonUpPosition - buttonDownPosition).magnitude);
 
-            buttonUpWorld = ScreenPointToWorld(Input.mousePosition);
+            buttonUpWorld = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, Camera.main);
 
             if ((buttonUpPosition - buttonDownPosition).magnitude > BOXSELECTMINIMUM)
             {
@@ -87,27 +79,6 @@ public class KCameraSelectionComponent : MonoBehaviour
             buttonDownPosition = Vector2.zero;
             buttonUpPosition = Vector2.zero;
         }
-    }
-
-    protected Vector3 ScreenPointToWorld(Vector2 screenPos)
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(screenPos);
-        if (Physics.Raycast(ray, out hit))
-        {
-            return hit.point;
-        }
-        // use default plane if no terrain struck
-        else
-        {
-            float distToPlane;
-            if (defaultPlane.Raycast(ray, out distToPlane))
-            {
-                return ray.GetPoint(distToPlane);
-            }
-        }
-
-        return Vector3.zero;
     }
 
     protected void BoxSelect(Vector3 posA, Vector3 posB)

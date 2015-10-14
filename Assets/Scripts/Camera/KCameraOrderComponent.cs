@@ -29,7 +29,13 @@ public class KCameraOrderComponent : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            Debug.Log("hello");
             // issue move order or attack order to all selected units
+            foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
+            {
+                Debug.Log("durr");
+                unit.aiController.IssueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, Camera.main));
+            }
         }
     }
 

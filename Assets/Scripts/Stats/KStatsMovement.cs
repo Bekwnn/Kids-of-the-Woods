@@ -14,8 +14,8 @@ public class KStatsMovement : MonoBehaviour
     {
         if (navAgent != null)
         {
-            navAgent.speed = movementSpeed.ModifiedValue;
-            navAgent.angularSpeed = turnRate.ModifiedValue;
+            navAgent.speed = movementSpeed.modifiedValue;
+            navAgent.angularSpeed = turnRate.modifiedValue;
         }
     }
 }
