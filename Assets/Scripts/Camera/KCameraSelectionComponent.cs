@@ -106,6 +106,7 @@ public class KCameraSelectionComponent : MonoBehaviour
                 KUnit hitUnit = hit.collider.gameObject.GetComponent<KUnit>();
                 if (hitUnit != null)
                 {
+                    DeselectAll();
                     cameraPawn.owningPlayer.SelectUnit(hitUnit);
                 }
                 else

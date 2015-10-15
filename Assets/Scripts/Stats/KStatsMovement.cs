@@ -12,6 +12,9 @@ public class KStatsMovement : MonoBehaviour
 
     void Awake()
     {
+        movementSpeed = new KBuffableStat(3.5f);
+        turnRate = new KBuffableStat(100f);
+
         if (navAgent != null)
         {
             navAgent.speed = movementSpeed.modifiedValue;
