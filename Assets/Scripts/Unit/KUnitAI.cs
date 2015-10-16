@@ -27,13 +27,21 @@ public class KUnitAI : MonoBehaviour
                 bWaitingNewOrder = true;
             }
 
-            // if we have an order in queue and we're waiting for a new order
-            if (orderQueue.Count != 0 && bWaitingNewOrder)
+            // if we have an order in queue
+            if (orderQueue.Count != 0)
             {
-                // execute the next order and set waiting to false
-                orderQueue.Peek().Execute();
-                bWaitingNewOrder = false;
+                // and we're waiting for a new order
+                if (bWaitingNewOrder)
+                {
+                    orderQueue.Peek().Execute();
+                    bWaitingNewOrder = false;
+                }
+
+                // then update order
+                orderQueue.Peek().OrderUpdate();
             }
+
+
         }
 
         // when order queue is empty, wait for new order 
@@ -45,7 +53,7 @@ public class KUnitAI : MonoBehaviour
 
     public void IssueMoveOrder(Vector3 position)
     {
-        
+        //TODO in a better way
     }
 
     public void QueueMoveOrder(Vector3 position)

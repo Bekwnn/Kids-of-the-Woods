@@ -17,4 +17,9 @@ public abstract class KUnitOrder
     {
         bOrderCompleted = true;
     }
+
+    public virtual void OrderUpdate()
+    {
+        OrderFinished();
+    }
 }
