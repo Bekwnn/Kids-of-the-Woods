@@ -9,6 +9,12 @@ public class KUnitAI : MonoBehaviour
     protected Queue<KUnitOrder> orderQueue;
     protected bool bWaitingNewOrder;
 
+    void Awake()
+    {
+        orderQueue = new Queue<KUnitOrder>();
+        bWaitingNewOrder = true;
+    }
+
     void Update()
     {
         OrderUpdate();
@@ -19,12 +25,14 @@ public class KUnitAI : MonoBehaviour
         // if we have any orders in queue
         if (orderQueue.Count != 0)
         {
+            Debug.Log("count != 0");
             // check if the current order is completed
             if (orderQueue.Peek().bOrderCompleted)
             {
                 // if it's completed then dequeue it and mark unit as waiting for new order
                 orderQueue.Dequeue();
                 bWaitingNewOrder = true;
+                Debug.Log("order completed");
             }
 
             // if we have an order in queue
@@ -33,6 +41,7 @@ public class KUnitAI : MonoBehaviour
                 // and we're waiting for a new order
                 if (bWaitingNewOrder)
                 {
+                    Debug.Log("executing new order...");
                     orderQueue.Peek().Execute();
                     bWaitingNewOrder = false;
                 }
@@ -53,7 +62,9 @@ public class KUnitAI : MonoBehaviour
 
     public void IssueMoveOrder(Vector3 position)
     {
-        //TODO in a better way
+        orderQueue.Clear();
+        bWaitingNewOrder = true;
+        QueueMoveOrder(position);
     }
 
     public void QueueMoveOrder(Vector3 position)
@@ -64,7 +75,9 @@ public class KUnitAI : MonoBehaviour
 
     public void IssueFollowOrder(KUnit unit)
     {
-        //TODO
+        orderQueue.Clear();
+        bWaitingNewOrder = true;
+        QueueFollowOrder(unit);
     }
 
     public void QueueFollowOrder(KUnit unit)
@@ -75,7 +88,9 @@ public class KUnitAI : MonoBehaviour
 
     public void IssueAttackMoveOrder(Vector3 position)
     {
-        //TODO
+        orderQueue.Clear();
+        bWaitingNewOrder = true;
+        QueueAttackMoveOrder(position);
     }
 
     public void QueueAttackMoveOrder(Vector3 position)
@@ -86,7 +101,9 @@ public class KUnitAI : MonoBehaviour
 
     public void IssueAttackUnitOrder(KUnit unit)
     {
-        //TODO
+        orderQueue.Clear();
+        bWaitingNewOrder = true;
+        QueueAttackUnitOrder(unit);
     }
 
     public void QueueAttackUnitOrder(KUnit unit)

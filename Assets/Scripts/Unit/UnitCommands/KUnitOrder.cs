@@ -18,6 +18,7 @@ public abstract class KUnitOrder
         bOrderCompleted = true;
     }
 
+    // default behavior is for order to finish instantly
     public virtual void OrderUpdate()
     {
         OrderFinished();
