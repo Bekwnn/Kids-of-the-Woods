@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KGatheringComponent : MonoBehaviour
+public class KStructure : MonoBehaviour
 {
-
+	
 }

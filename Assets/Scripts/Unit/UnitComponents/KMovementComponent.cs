@@ -8,7 +8,9 @@ public class KStatsMovement : MonoBehaviour
     public KBuffableStat movementSpeed;
     public KBuffableStat turnRate;
 
-    public bool bIsFlying;
+    public bool bMoveDisabled;
+    public bool bTurnDisabled;
+    public bool bFlyingMovement;
 
     void Awake()
     {
