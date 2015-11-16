@@ -60,8 +60,6 @@ public class KCameraSelectionComponent : MonoBehaviour
         // end and select
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log((buttonUpPosition - buttonDownPosition).magnitude);
-
             buttonUpWorld = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, Camera.main);
 
             if ((buttonUpPosition - buttonDownPosition).magnitude > BOXSELECTMINIMUM)
@@ -103,15 +101,28 @@ public class KCameraSelectionComponent : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                KUnit hitUnit = hit.collider.gameObject.GetComponent<KUnit>();
-                if (hitUnit != null)
+                //shift select
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    DeselectAll();
-                    cameraPawn.owningPlayer.SelectUnit(hitUnit);
+                    KUnit hitUnit = hit.collider.gameObject.GetComponent<KUnit>();
+                    if (hitUnit != null)
+                    {
+                        cameraPawn.owningPlayer.SelectUnit(hitUnit);
+                    }
                 }
+                //regular select (TODO: CTRL select)
                 else
                 {
-                    DeselectAll();
+                    KUnit hitUnit = hit.collider.gameObject.GetComponent<KUnit>();
+                    if (hitUnit != null)
+                    {
+                        DeselectAll();
+                        cameraPawn.owningPlayer.SelectUnit(hitUnit);
+                    }
+                    else
+                    {
+                        DeselectAll();
+                    }
                 }
             }
         }

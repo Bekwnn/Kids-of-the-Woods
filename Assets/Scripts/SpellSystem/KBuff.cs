@@ -1,6 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum EBuffEvent
+{
+    BEINGHITBYSPELL,
+    BEINGHIT,
+    ATTACKSENT,
+    ATTACKHIT,
+    SPELLSENT,
+    SPELLHIT,
+
+}
+
 public abstract class KBuff : MonoBehaviour
 {
     public float duration;

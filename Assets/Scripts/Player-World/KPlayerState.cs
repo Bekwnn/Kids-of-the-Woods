@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+//TODO: record player-related stats during game
+public struct FPlayerStats
+{
+
+}
+
 public class KPlayerState : MonoBehaviour
 {
     public KUnit playerHero;
