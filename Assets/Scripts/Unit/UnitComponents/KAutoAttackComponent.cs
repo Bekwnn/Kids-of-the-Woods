@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KStatsAutoAttack : MonoBehaviour
+public class KAutoAttackComponent : MonoBehaviour
 {
     public KBuffableStat attackDamage;
     public KBuffableStat attackSpeed;

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class KStatsDefensive : MonoBehaviour
 {
-    public KBuffableStat health;
+    public KBuffableStat maxHealth;
+    public KBuffableStat healthRegen;
     public KBuffableStat armor;
     public KBuffableStat magicResist;
 }

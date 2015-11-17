@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KStatsMovement : MonoBehaviour
+public class KMovementComponent : MonoBehaviour
 {
     public NavMeshAgent navAgent;
 

@@ -10,7 +10,7 @@ public class KSpellCastingComponent : MonoBehaviour
     public bool bSpellCastingDisabled;
     public bool bPassiveSpellsDisabled;
 
-    public void AddResource(float amount)
+    public void RestoreResource(float amount)
     {
 
     }

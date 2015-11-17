@@ -4,7 +4,7 @@ using System.Collections;
 public class KGatherOrder : KUnitOrder
 {
     public static float GATHERACCEPTRADIUS = 2f;
-    protected KUnit gatherTarget;
+    protected KUnit gatherTarget;   //TODO: change to gathernode
 
     public KGatherOrder(KUnitAI ai, KUnit collectTarget)
     {
