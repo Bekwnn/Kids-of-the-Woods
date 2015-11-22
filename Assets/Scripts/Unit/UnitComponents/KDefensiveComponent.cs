@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KStatsDefensive : MonoBehaviour
+public class KDefensiveComponent : MonoBehaviour
 {
     public KBuffableStat maxHealth;
     public KBuffableStat healthRegen;

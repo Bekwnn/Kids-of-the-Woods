@@ -10,7 +10,7 @@ public struct FPlayerStats
 public class KPlayerState : MonoBehaviour
 {
     public KUnit playerHero;
-    public int playerTeam;
+    public KTeamState playerTeam;
 
     public List<KUnit> selectedUnits;
 
@@ -27,5 +27,10 @@ public class KPlayerState : MonoBehaviour
             unit.bSelected = false;
         }
         selectedUnits.Clear();
+    }
+
+    public void AddHeroStructureTraits(Dictionary<string, KStructure> teamBuildings)
+    {
+        playerHero.AddStructureTraits(teamBuildings);
     }
 }

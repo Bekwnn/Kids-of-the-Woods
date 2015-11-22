@@ -3,11 +3,8 @@ using System.Collections.Generic;
 
 public class KWorld : MonoBehaviour
 {
-    // empty object our world instance is on
-    GameObject gameWorldObject;
-
     // list of current players
-    List<KPlayerState> players;
+    public KGameState gameState;
 
     // singleton instance
     protected static KWorld _instance;
@@ -29,11 +26,17 @@ public class KWorld : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
+            InitializeWorld();
         }
         else
         {
             if (this != _instance)
                 Destroy(this.gameObject);
         }
+    }
+
+    void InitializeWorld()
+    {
+        gameState.InitializeGameState();
     }
 }

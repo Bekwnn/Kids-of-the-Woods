@@ -16,6 +16,15 @@ public struct FUnitStatus
 public class KUnit : KSelectable
 {
     public KUnitAI aiController;
+    public KPlayerState owningPlayer;
+
+    public KAutoAttackComponent autoAttackComponent;
+    public KDefensiveComponent defensiveComponent;
+    public KMovementComponent movementComponent;
+    public KInventoryComponent inventoryComponent;
+    public KGatheringComponent gatheringComponent;
+    public KSpellCastingComponent spellComponent;
+    public KLevelComponent levelComponent;
 
     protected List<KBuff> activeBuffs;
 
@@ -70,5 +79,11 @@ public class KUnit : KSelectable
                 }
                 break;
         }
+    }
+
+    public virtual void AddStructureTraits(Dictionary<string, KStructure> teamBuildings)
+    {
+        //by default do nothing
+        Debug.Log("Add traits.");
     }
 }
