@@ -4,7 +4,7 @@ using System.Collections;
 public class KAttackUnitOrder : KUnitOrder
 {
     public static float FOLLOWACCEPTRADIUS = 2f;
-    protected KUnit targetUnit;
+    protected KUnit targetUnit; //TODO: needs to support structures later (attackable interface)
 
     public KAttackUnitOrder(KUnitAI ai, KUnit attackTarget)
     {
@@ -14,12 +14,12 @@ public class KAttackUnitOrder : KUnitOrder
 
     public override void Execute()
     {
-        // TODO move order, temporary
-        aiController.navAgent.SetDestination(targetUnit.transform.position);
+        aiController.unit.AutoAttackTarget(targetUnit);
     }
 
     public override void OrderUpdate()
     {
+        //TODO: check if unit dead or not visible and stop finish order if so
         if (Vector3.Distance(aiController.transform.position, targetUnit.transform.position) < FOLLOWACCEPTRADIUS)
         {
             OrderFinished();

@@ -14,7 +14,7 @@ public class KMoveOrder : KUnitOrder
 
     public override void Execute()
     {
-        aiController.navAgent.SetDestination(targetLocation);
+        aiController.unit.MoveToLocation(targetLocation);
     }
 
     public override void OrderUpdate()

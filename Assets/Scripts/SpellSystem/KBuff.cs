@@ -3,12 +3,12 @@ using System.Collections;
 
 public enum EBuffEvent
 {
-    BEINGHITBYSPELL,
+    BEINGHITBYABILITY,
     BEINGHIT,
     ATTACKSENT,
     ATTACKHIT,
-    SPELLSENT,
-    SPELLHIT,
+    ABILITYSENT,
+    ABILITYHIT,
 
 }
 
@@ -25,7 +25,7 @@ public abstract class KBuff : MonoBehaviour
     //default behavior is to call OnExpiration
     public virtual void OnDispelled() { OnExpiration(); }
 
-    abstract public void OnBeingHitBySpell(KUnit other);
+    abstract public void OnBeingHitByAbility(KUnit other);
 
     abstract public void OnBeingHit(KUnit other);
 
@@ -33,7 +33,7 @@ public abstract class KBuff : MonoBehaviour
 
     abstract public void OnAttackHit(KUnit other);
 
-    abstract public void OnSpellSent();
+    abstract public void OnAbilitySent();
 
-    abstract public void OnSpellHit(KUnit other);
+    abstract public void OnAbilityHit(KUnit other);
 }

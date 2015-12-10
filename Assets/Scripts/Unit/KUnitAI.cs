@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 public class KUnitAI : MonoBehaviour
 {
-    public KUnit unitManager;
-    public NavMeshAgent navAgent;
+    public KUnit unit;
 
     protected Queue<KUnitOrder> orderQueue;
     protected bool bWaitingNewOrder;
@@ -25,7 +24,6 @@ public class KUnitAI : MonoBehaviour
         // if we have any orders in queue
         if (orderQueue.Count != 0)
         {
-            Debug.Log("count != 0");
             // check if the current order is completed
             if (orderQueue.Peek().bOrderCompleted)
             {
@@ -112,14 +110,16 @@ public class KUnitAI : MonoBehaviour
         orderQueue.Enqueue(attackUnitOrder);
     }
 
-    public void IssueSpellCastOrder(KAbility spell)
+    public void IssueAbilityCastOrder(KAbility ability, Vector3 location)
     {
-        //TODO
+        orderQueue.Clear();
+        bWaitingNewOrder = true;
+        QueueAbilityCastOrder(ability, location);
     }
 
-    public void QueueSpellCastOrder(KAbility spell)
+    public void QueueAbilityCastOrder(KAbility ability, Vector3 location)
     {
-        KSpellCastOrder spellOrder = new KSpellCastOrder(this, spell);
-        orderQueue.Enqueue(spellOrder);
+        KAbilityCastOrder abilityOrder = new KAbilityCastOrder(this, ability, location);
+        orderQueue.Enqueue(abilityOrder);
     }
 }

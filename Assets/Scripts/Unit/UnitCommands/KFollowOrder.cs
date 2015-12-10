@@ -15,11 +15,12 @@ public class KFollowOrder : KUnitOrder
     public override void Execute()
     {
         // TODO temporary, move order
-        aiController.navAgent.SetDestination(targetUnit.transform.position);
+        aiController.unit.MoveToLocation(targetUnit.transform.position);
     }
 
     public override void OrderUpdate()
     {
+        aiController.unit.MoveToLocation(targetUnit.transform.position); //update move order TODO make better
         if (Vector3.Distance(aiController.transform.position, targetUnit.transform.position) < FOLLOWACCEPTRADIUS)
         {
             OrderFinished();

@@ -5,6 +5,7 @@ public class KBuildOrder : KUnitOrder
 {
     public static float BUILDRADIUS = 1f;
     protected Vector3 buildLocation;
+    protected KStructure structure;
 
     public KBuildOrder(KUnitAI ai, Vector3 buildPosition)
     {
@@ -14,7 +15,7 @@ public class KBuildOrder : KUnitOrder
 
     public override void Execute()
     {
-        aiController.navAgent.SetDestination(buildLocation);
+        aiController.unit.BuildStructure(structure);
     }
 
     public override void OrderUpdate()

@@ -1,18 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class KSpellCastOrder : KUnitOrder
+//TODO: figure out how to handle ability cast orders
+public class KAbilityCastOrder : KUnitOrder
 {
-    protected KAbility castSpell;
+    public static float MOVEACCEPTRADIUS = 1f; //TODO replace with ability cast range
+    protected KAbility ability;
+    protected Vector3 abilityTargetLocation;
 
-    public KSpellCastOrder(KUnitAI ai, KAbility spell)
+    public KAbilityCastOrder(KUnitAI ai, KAbility ability, Vector3 targetLocation)
     {
         aiController = ai;
-        castSpell = spell;
+        abilityTargetLocation = targetLocation;
     }
 
     public override void Execute()
     {
-        //TODO
+        aiController.unit.MoveToLocation(abilityTargetLocation);
+    }
+
+    //TODO: order finishes when ability cast animation starts
+    public override void OrderUpdate()
+    {
+        if (Vector3.Distance(aiController.transform.position, abilityTargetLocation) < MOVEACCEPTRADIUS)
+        {
+            aiController.unit.CastAbility(ability);
+            OrderFinished();
+        }
     }
 }

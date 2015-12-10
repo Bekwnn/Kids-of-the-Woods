@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ESpellCastMethod
+public enum EAbilityCastMethod
 {
     ONPRESS,
-	TARGETUNIT,
-	AIMED,
-	DRAGAIMED
+    TARGETUNIT,
+    AIMED,
+    DRAGAIMED
 };
 
 public abstract class KAbility : MonoBehaviour
 {
     public KBuff passive;
-    public ESpellCastMethod castMethod;
+    public EAbilityCastMethod castMethod;
 
     public bool bHasActive;
     public bool bHasPassive;

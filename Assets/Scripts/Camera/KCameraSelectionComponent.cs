@@ -49,7 +49,7 @@ public class KCameraSelectionComponent : MonoBehaviour
             cameraPawn.movementComponent.bCanZoom = false;
             buttonDownPosition = Input.mousePosition;
 
-            buttonDownWorld = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, Camera.main);
+            buttonDownWorld = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent);
         }
 
         if (Input.GetMouseButton(0))
@@ -60,7 +60,7 @@ public class KCameraSelectionComponent : MonoBehaviour
         // end and select
         if (Input.GetMouseButtonUp(0))
         {
-            buttonUpWorld = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, Camera.main);
+            buttonUpWorld = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent);
 
             if ((buttonUpPosition - buttonDownPosition).magnitude > BOXSELECTMINIMUM)
             {
@@ -96,7 +96,7 @@ public class KCameraSelectionComponent : MonoBehaviour
     protected void SingleSelect(Vector2 screenPos)
     {
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(screenPos);
+        Ray ray = cameraPawn.cameraComponent.ScreenPointToRay(screenPos);
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider != null)

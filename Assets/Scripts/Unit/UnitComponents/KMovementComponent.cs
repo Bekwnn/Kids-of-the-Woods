@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KMovementComponent : MonoBehaviour
+public class KMovementComponent : KUnitComponent
 {
     public NavMeshAgent navAgent;
 
@@ -22,5 +22,10 @@ public class KMovementComponent : MonoBehaviour
             navAgent.speed = movementSpeed.modifiedValue;
             navAgent.angularSpeed = turnRate.modifiedValue;
         }
+    }
+
+    public void MoveToLocation(Vector3 location)
+    {
+        navAgent.SetDestination(location);
     }
 }

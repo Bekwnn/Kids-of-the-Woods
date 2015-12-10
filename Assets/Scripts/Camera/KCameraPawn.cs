@@ -13,6 +13,9 @@ public class KCameraPawn : MonoBehaviour
     // reference to owning player:
     public KPlayerState owningPlayer;
 
+    //camera component
+    public Camera cameraComponent;
+
     // required CameraPawn components:
     public KCameraMovementComponent movementComponent;
     public KCameraSelectionComponent selectionComponent;
@@ -38,6 +41,11 @@ public class KCameraPawn : MonoBehaviour
         {
             _defaultPlane = value;
         }
+    }
+
+    void Reset()
+    {
+        if (cameraComponent == null) cameraComponent = GetComponent<Camera>();
     }
 
     public static Vector3 ScreenPointToGameWorld(Vector2 screenPos, Camera camera, bool bOnlyUseDefaultPlane = false)

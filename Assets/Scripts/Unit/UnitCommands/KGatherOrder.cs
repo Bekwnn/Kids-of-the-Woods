@@ -4,9 +4,9 @@ using System.Collections;
 public class KGatherOrder : KUnitOrder
 {
     public static float GATHERACCEPTRADIUS = 2f;
-    protected KUnit gatherTarget;   //TODO: change to gathernode
+    protected KResource gatherTarget;   //TODO: change to gathernode
 
-    public KGatherOrder(KUnitAI ai, KUnit collectTarget)
+    public KGatherOrder(KUnitAI ai, KResource collectTarget)
     {
         aiController = ai;
         gatherTarget = collectTarget;
@@ -15,7 +15,7 @@ public class KGatherOrder : KUnitOrder
     public override void Execute()
     {
         // TODO temporary, move order
-        aiController.navAgent.SetDestination(gatherTarget.transform.position);
+        aiController.unit.GatherResource(gatherTarget);
     }
 
     public override void OrderUpdate()

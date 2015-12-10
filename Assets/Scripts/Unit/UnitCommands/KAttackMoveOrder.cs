@@ -13,6 +13,6 @@ public class KAttackMoveOrder : KUnitOrder
 
     public override void Execute()
     {
-        aiController.navAgent.SetDestination(targetLocation); //move order, temporary
+        aiController.unit.MoveToLocation(targetLocation);
     }
 }

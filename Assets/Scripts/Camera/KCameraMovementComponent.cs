@@ -87,7 +87,7 @@ public class KCameraMovementComponent : MonoBehaviour
 
     protected void UpdateCameraDrag()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cameraPawn.cameraComponent.ScreenPointToRay(Input.mousePosition);
         float distToPlane;
         if (Input.GetMouseButtonDown(2))
         {

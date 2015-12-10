@@ -2,7 +2,7 @@
 using System.Collections;
 
 /*
- * Component allows camera pawn to issue orders to units and cast spells
+ * Component allows camera pawn to issue orders to units and cast abilities
  */
 
 public class KCameraOrderComponent : MonoBehaviour
@@ -10,7 +10,7 @@ public class KCameraOrderComponent : MonoBehaviour
     // ref to management component
     public KCameraPawn cameraPawn;
     
-    // true if spell is prepped on cursor to cast
+    // true if ability is prepped on cursor to cast
     public bool bTryingToCast { get; protected set; }
 
     void Update()
@@ -34,7 +34,7 @@ public class KCameraOrderComponent : MonoBehaviour
                 // issue move order or attack order to all selected units
                 foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
                 {
-                    unit.aiController.QueueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, Camera.main));
+                    unit.aiController.QueueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent));
                 }
             }
             else
@@ -42,7 +42,7 @@ public class KCameraOrderComponent : MonoBehaviour
                 // issue move order or attack order to all selected units
                 foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
                 {
-                    unit.aiController.IssueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, Camera.main));
+                    unit.aiController.IssueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent));
                 }
             }
         }
@@ -52,11 +52,11 @@ public class KCameraOrderComponent : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // cast spell at cursor selection
+            // cast ability at cursor selection
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            // cancel spell cast
+            // cancel ability cast
         }
     }
 }
