@@ -95,35 +95,27 @@ public class KCameraSelectionComponent : MonoBehaviour
 
     protected void SingleSelect(Vector2 screenPos)
     {
-        RaycastHit hit;
-        Ray ray = cameraPawn.cameraComponent.ScreenPointToRay(screenPos);
-        if (Physics.Raycast(ray, out hit))
+        //shift select
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            if (hit.collider != null)
+            KUnit hitUnit = KCameraPawn.GetUnitUnderScreenPos(Input.mousePosition, cameraPawn.cameraComponent);
+            if (hitUnit != null)
             {
-                //shift select
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    KUnit hitUnit = hit.collider.gameObject.GetComponent<KUnit>();
-                    if (hitUnit != null)
-                    {
-                        cameraPawn.owningPlayer.SelectUnit(hitUnit);
-                    }
-                }
-                //regular select (TODO: CTRL select)
-                else
-                {
-                    KUnit hitUnit = hit.collider.gameObject.GetComponent<KUnit>();
-                    if (hitUnit != null)
-                    {
-                        DeselectAll();
-                        cameraPawn.owningPlayer.SelectUnit(hitUnit);
-                    }
-                    else
-                    {
-                        DeselectAll();
-                    }
-                }
+                cameraPawn.owningPlayer.SelectUnit(hitUnit);
+            }
+        }
+        //regular select (TODO: CTRL select)
+        else
+        {
+            KUnit hitUnit = KCameraPawn.GetUnitUnderScreenPos(Input.mousePosition, cameraPawn.cameraComponent);
+            if (hitUnit != null)
+            {
+                DeselectAll();
+                cameraPawn.owningPlayer.SelectUnit(hitUnit);
+            }
+            else
+            {
+                DeselectAll();
             }
         }
     }

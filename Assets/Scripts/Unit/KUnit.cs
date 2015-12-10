@@ -142,6 +142,18 @@ public class KUnit : KSelectable
         }
     }
 
+    public bool IsInAttackRange(KUnit target)
+    {
+        if (autoAttackComponent != null)
+        {
+            if (Vector3.Distance(target.transform.position, transform.position) < autoAttackComponent.attackRange.modifiedValue)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void MoveToLocation(Vector3 location)
     {
         Debug.Log("Moving to: " + location.ToString());

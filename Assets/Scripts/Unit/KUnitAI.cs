@@ -54,7 +54,7 @@ public class KUnitAI : MonoBehaviour
         // when order queue is empty, wait for new order 
         else
         {
-            bWaitingNewOrder = true;
+            bWaitingNewOrder = true; // TODO perform 'hold position' while waiting for new orders
         }
     }
 

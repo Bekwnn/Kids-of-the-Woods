@@ -82,17 +82,18 @@ public class KCameraPawn : MonoBehaviour
         return Vector3.zero;
     }
 
-    public static RaycastHit ScreenPointHitData(Vector2 screenPos, Camera camera)
+    public static KUnit GetUnitUnderScreenPos(Vector2 screenPos, Camera camera)
     {
         RaycastHit hit;
         Ray ray = camera.ScreenPointToRay(screenPos);
         if (Physics.Raycast(ray, out hit))
         {
-            return hit;
+            if (hit.collider != null)
+            {
+                KUnit unitHit = hit.collider.gameObject.GetComponent<KUnit>();
+                if (unitHit != null) return unitHit;
+            }
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
 }

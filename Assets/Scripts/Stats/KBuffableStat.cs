@@ -19,13 +19,18 @@ public class KBuffableStat
         protected set;
     }
 
-    protected List<KStatModifier> preFlatModifiers = new List<KStatModifier>();
-    protected List<KStatModifier> additivePercModifiers = new List<KStatModifier>();
-    protected List<KStatModifier> multPercModifiers = new List<KStatModifier>();
-    protected List<KStatModifier> postFlatModifiers = new List<KStatModifier>();
+    protected List<KStatModifier> preFlatModifiers;
+    protected List<KStatModifier> additivePercModifiers;
+    protected List<KStatModifier> multPercModifiers;
+    protected List<KStatModifier> postFlatModifiers;
 
     public KBuffableStat(float value)
     {
+        preFlatModifiers = new List<KStatModifier>();
+        additivePercModifiers = new List<KStatModifier>();
+        multPercModifiers = new List<KStatModifier>();
+        postFlatModifiers = new List<KStatModifier>();
+
         baseValue = value;
         modifiedValue = value;
     }

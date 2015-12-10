@@ -31,20 +31,44 @@ public class KCameraOrderComponent : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                // TODO check if unit under cursor and issue attack order if so
-
-                // issue move order or attack order to all selected units
-                foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
+                KUnit unitHit = KCameraPawn.GetUnitUnderScreenPos(Input.mousePosition, cameraPawn.cameraComponent);
+                
+                if (unitHit != null)
                 {
-                    unit.aiController.QueueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent));
+                    // issue attack order to all selected units
+                    foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
+                    {
+                        unit.aiController.QueueAttackUnitOrder(unitHit);
+                    }
+                }
+                else
+                {
+                    // issue move order to all selected units
+                    foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
+                    {
+                        unit.aiController.QueueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent));
+                    }
                 }
             }
             else
             {
-                // issue move order or attack order to all selected units
-                foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
+                KUnit unitHit = KCameraPawn.GetUnitUnderScreenPos(Input.mousePosition, cameraPawn.cameraComponent);
+
+                if (unitHit != null)
                 {
-                    unit.aiController.IssueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent));
+                    // issue attack order to all selected units
+                    foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
+                    {
+                        unit.aiController.IssueAttackUnitOrder(unitHit);
+                    }
+                }
+                else
+                {
+                    // issue move order to all selected units
+                    foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
+                    {
+                        unit.aiController.IssueMoveOrder(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent));
+                    }
                 }
             }
         }

@@ -9,22 +9,22 @@ public class KAutoAttackComponent : KUnitComponent
     public KBuffableStat criticalDamage;
     public KBuffableStat attackRange;
 
-    void Reset()
+    void Awake()
     {
-        if (unit == null) gameObject.GetComponent<KUnit>();
+        // can set stats here
     }
 
-    public void TryAttackingTarget(KUnit Target)
+    public void TryAttackingTarget(KUnit target)
     {
-        //TODO logic for chasing and attacking goes here
+        Debug.Log("Attempting to attack target");
     }
 
-    protected void LaunchAttack()
+    protected void StartAttack()
     {
         //TODO
     }
 
-    protected void StartAttack()
+    protected void LaunchAttack()
     {
         //TODO
     }
