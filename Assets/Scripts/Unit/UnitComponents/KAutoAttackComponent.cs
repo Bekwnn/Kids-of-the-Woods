@@ -9,6 +9,11 @@ public class KAutoAttackComponent : KUnitComponent
     public KBuffableStat criticalDamage;
     public KBuffableStat attackRange;
 
+    void Reset()
+    {
+        if (unit == null) gameObject.GetComponent<KUnit>();
+    }
+
     public void TryAttackingTarget(KUnit Target)
     {
         //TODO logic for chasing and attacking goes here

@@ -31,6 +31,8 @@ public class KCameraOrderComponent : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
+                // TODO check if unit under cursor and issue attack order if so
+
                 // issue move order or attack order to all selected units
                 foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
                 {

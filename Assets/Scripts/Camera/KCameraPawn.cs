@@ -48,6 +48,7 @@ public class KCameraPawn : MonoBehaviour
         if (cameraComponent == null) cameraComponent = GetComponent<Camera>();
     }
 
+    // tries to hit terrain, returns a hit against the default plane if no terrain found
     public static Vector3 ScreenPointToGameWorld(Vector2 screenPos, Camera camera, bool bOnlyUseDefaultPlane = false)
     {
         RaycastHit hit;
@@ -79,5 +80,19 @@ public class KCameraPawn : MonoBehaviour
         }
 
         return Vector3.zero;
+    }
+
+    public static RaycastHit ScreenPointHitData(Vector2 screenPos, Camera camera)
+    {
+        RaycastHit hit;
+        Ray ray = camera.ScreenPointToRay(screenPos);
+        if (Physics.Raycast(ray, out hit))
+        {
+            return hit;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
