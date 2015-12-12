@@ -1,4 +1,6 @@
-﻿public enum EDamageType
+﻿using System;
+
+public enum EDamageType
 {
     PHYS,
     MAGIC,
@@ -16,6 +18,16 @@ public struct FDamageInfo
     public float percMisHealthAmount;
     public KUnit source;
     public KUnit target;
+}
+
+[Serializable]
+public class DefensiveComponentInfo
+{
+    public float attackDamage;
+    public float attackSpeed;
+    public float criticalChance;
+    public float criticalDamage;
+    public float attackRange;
 }
 
 public class KDefensiveComponent : KUnitComponent

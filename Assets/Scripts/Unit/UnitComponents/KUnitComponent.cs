@@ -5,10 +5,4 @@ using System.Collections;
 public abstract class KUnitComponent : MonoBehaviour
 {
     public KUnit unit;
-
-    protected void Reset()
-    {
-        if (unit == null)
-            gameObject.GetComponent<KUnit>();
-    }
 }

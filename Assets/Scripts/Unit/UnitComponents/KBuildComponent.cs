@@ -1,5 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+
+[Serializable]
+public class BuildComponentInfo
+{
+    public float buildSpeed;
+}
 
 public class KBuildComponent : KUnitComponent
 {

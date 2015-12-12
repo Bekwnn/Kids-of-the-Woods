@@ -163,6 +163,11 @@ public class KUnit : KSelectable
         }
     }
 
+    public void StopMoving()
+    {
+        movementComponent.StopMoving();
+    }
+
     public void CastAbility(KAbility ability)
     {
         Debug.Log("Casting ability");

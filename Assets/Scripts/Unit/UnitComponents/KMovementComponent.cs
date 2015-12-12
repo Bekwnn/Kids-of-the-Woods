@@ -27,5 +27,11 @@ public class KMovementComponent : KUnitComponent
     public void MoveToLocation(Vector3 location)
     {
         navAgent.SetDestination(location);
+        navAgent.Resume();
+    }
+
+    public void StopMoving()
+    {
+        navAgent.Stop();
     }
 }

@@ -1,5 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+
+[Serializable]
+public class GatheringComponentInfo
+{
+    public float gatherSpeed;
+    public float gatherYield;
+}
 
 public class KGatheringComponent : KUnitComponent
 {

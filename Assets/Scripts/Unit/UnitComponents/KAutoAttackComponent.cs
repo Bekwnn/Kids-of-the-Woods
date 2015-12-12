@@ -1,5 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
+
+[Serializable]
+public class AutoAttackComponentInfo
+{
+    public float attackDamage;
+    public float attackSpeed;
+    public float criticalChance;
+    public float criticalDamage;
+    public float attackRange;
+}
 
 public class KAutoAttackComponent : KUnitComponent
 {

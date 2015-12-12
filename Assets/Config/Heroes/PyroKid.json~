@@ -1,0 +1,65 @@
+{
+	"PyroKid": {
+		"Attack": {
+			"AttackDamage": {
+				"base": 44
+			},
+			"AttackSpeed": {
+				"base": 0.7
+			},
+			"AttackRange": {
+				"base": 5.0
+			},
+			"CritChance": {
+				"base": 0.0
+			},
+			"CritDamage": {
+				"base": 2.0
+			}
+		},
+		"Movement": {
+			"MoveSpeed": {
+				"base": 320
+			},
+			"TurnRate": {
+				"base": 720
+			}
+		},
+		"Defensive": {
+			"MaxHealth": {
+				"base": 540
+			},
+			"HealthRegen": {
+				"base": 3.0
+			},
+			"Armor": {
+				"base": 20
+			},
+			"MagicResist": {
+				"base": 30
+			}
+		},
+		"Ability": {
+			"MaxResource": {
+				"base": 330
+			},
+			"ResourceRegen": {
+				"base": 0.7
+			}
+		},
+		"Gathering": {
+			"GatherSpeed": {
+				"base": 1.0
+			},
+			"Yield": {
+				"base": 1.0
+			}
+		},
+		"Building" : {
+			"BuildSpeed": {
+				"base": 1.0
+			}
+		}
+	}
+}
+

@@ -1,5 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+
+[Serializable]
+public class AbilityComponentInfo
+{
+    public float maxResource;
+    public float resourceRegen;
+    public bool bUsesMana;
+}
 
 public class KAbilityComponent : KUnitComponent
 {

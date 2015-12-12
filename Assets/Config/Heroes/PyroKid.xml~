@@ -1,0 +1,63 @@
+<hero name="Pyro Kid">
+	<attack>
+		<attackDamage>
+			<base>44  </base>
+		</attackDamage>
+		<attackSpeed>
+			<base>0.7 </base>
+		</attackSpeed>
+		<attackRange>
+			<base>5.0 </base>
+		</attackRange>
+		<critChance>
+			<base>0.0 </base>
+		</critChance>
+		<critDamage>
+			<base>2.0 </base>
+		</critDamage>
+	</attack>
+	<movement>
+		<moveSpeed>
+			<base>320</base>
+		</moveSpeed>
+		<turnRate>
+			<base>720</base>
+		</turnRate>
+	</movement>
+	<defensive>
+		<maxHealth>
+			<base>540</base>
+		</maxHealth>
+		<healthRegen>
+			<base>3.0</base>
+		</healthRegen>
+		<armor>
+			<base>20 </base>
+		</armor>
+		<magicResist>
+			<base>30 </base>
+		</magicResist>
+	</defensive>
+	<ability>
+		<maxResource>
+			<base>330</base>
+		</maxResource>
+		<resourceRegen>
+			<base>0.7</base>
+		</resourceRegen>
+		<usesMana>true</usesMana>
+	</ability>
+	<gathering>
+		<gatherSpeed>
+			<base>1.5 </base>
+		</gatherSpeed>
+		<yield>
+			<base>1.0 </base>
+		</yield>
+	</gathering>
+	<building>
+		<buildSpeed>
+			<base>1.0</base>
+		</buildSpeed>
+	</building>
+</hero>
