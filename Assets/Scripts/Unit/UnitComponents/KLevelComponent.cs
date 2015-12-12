@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
+[Serializable]
+public class LevelComponentInfo
+{
+    public float experienceGainRate;
+    public float experienceRadius;
+}
 
 public class KLevelComponent : KUnitComponent
 {
@@ -9,6 +16,17 @@ public class KLevelComponent : KUnitComponent
     public KBuffableStat experienceRadius;
     public float experienceToNextLevel;
     public float currentExperience;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        LevelComponentInfo info = ReadJson<LevelComponentInfo>("defensive");
+
+        //assign values from json info
+        experienceGainRate = new KBuffableStat(info.experienceGainRate);
+        experienceRadius = new KBuffableStat(info.experienceRadius);
+    }
 
     public void GainExperience(float amount)
     {

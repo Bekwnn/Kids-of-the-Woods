@@ -1,41 +1,42 @@
 {
-	"PyroKid": {
-		"Attack": {
-			"AttackDamage": 44,
-			"AttackSpeed": 0.7,
-			"AttackRange": 5.0,
-			"CritChance": 0.0,
-			"CritDamage": 2.0
+	"pyroKid": {
+		"attack": {
+			"attackDamage": 44,
+			"attackSpeed": 0.7,
+			"attackRange": 5.0,
+			"critChance": 0.0,
+			"critDamage": 2.0
 		},
-		"AttackGrowth": {
-			"AttackDamage": 3,
-			"AttackSpeed": 0.1
+		"attackGrowth": {
+			"attackDamage": 3,
+			"attackSpeed": 0.1
 		},
-		"Movement": {
-			"MoveSpeed": 320,
-			"TurnRate": 720
+		"movement": {
+			"moveSpeed": 320,
+			"turnRate": 720
 		},
-		"Defensive": {
-			"MaxHealth": 540,
-			"HealthRegen": 3.0,
-			"Armor": 20,
-			"MagicResist": 30
+		"defensive": {
+			"maxHealth": 540,
+			"healthRegen": 3.0,
+			"armor": 20,
+			"magicResist": 30
 		},
-		"DefensiveGrowth": {
-			"MaxHealth": 22,
-			"HealthRegen": 0.2,
-			"Armor": 2
+		"defensiveGrowth": {
+			"maxHealth": 22,
+			"healthRegen": 0.2,
+			"armor": 2
 		},
-		"Ability": {
-			"MaxResource": 330,
-			"ResourceRegen": 0.7
+		"ability": {
+			"maxResource": 330,
+			"resourceRegen": 0.7,
+			"bUsesMana": true
 		},
-		"Gathering": {
-			"GatherSpeed": 1.0,
-			"Yield": 1.0
+		"gathering": {
+			"gatherSpeed": 1.0,
+			"yield": 1.0
 		},
-		"Build" : {
-			"BuildSpeed": 1.0
+		"build" : {
+			"buildSpeed": 1.0
 		}
 	}
 }

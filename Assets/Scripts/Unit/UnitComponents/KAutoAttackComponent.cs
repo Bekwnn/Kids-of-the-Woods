@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.IO;
 
 [Serializable]
 public class AutoAttackComponentInfo
@@ -19,9 +20,18 @@ public class KAutoAttackComponent : KUnitComponent
     public KBuffableStat criticalDamage;
     public KBuffableStat attackRange;
 
-    void Awake()
+    override public void Initialize()
     {
-        // can set stats here
+        base.Initialize();
+
+        AutoAttackComponentInfo info = ReadJson<AutoAttackComponentInfo>("attack");
+
+        //assign values from json info
+        attackDamage = new KBuffableStat(info.attackDamage);
+        attackSpeed = new KBuffableStat(info.attackSpeed);
+        criticalChance = new KBuffableStat(info.criticalChance);
+        criticalDamage = new KBuffableStat(info.criticalDamage);
+        attackRange = new KBuffableStat(info.attackRange);
     }
 
     public void TryAttackingTarget(KUnit target)

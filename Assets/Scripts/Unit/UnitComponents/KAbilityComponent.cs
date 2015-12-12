@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using UnityEngine;
 
 [Serializable]
 public class AbilityComponentInfo
@@ -16,6 +18,18 @@ public class KAbilityComponent : KUnitComponent
 
     public bool bAbilityCastingDisabled;
     public bool bPassiveAbilityDisabled;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        AbilityComponentInfo info = ReadJson<AbilityComponentInfo>("ability");
+
+        //assign values from json info
+        maxResource = new KBuffableStat(info.maxResource);
+        resourceRegen = new KBuffableStat(info.resourceRegen);
+        bUsesMana = info.bUsesMana;
+    }
 
     public void RestoreResource(float amount)
     {

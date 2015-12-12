@@ -21,6 +21,7 @@ public class KAttackUnitOrder : KUnitOrder
         //TODO: check if unit dead or not visible and stop finish order if so
         if (aiController.unit.IsInAttackRange(targetUnit))
         {
+            Debug.Log("Is in attack range!");
             aiController.unit.StopMoving();
             aiController.unit.AutoAttackTarget(targetUnit);
         }

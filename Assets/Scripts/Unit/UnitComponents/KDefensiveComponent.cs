@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using UnityEngine;
 
 public enum EDamageType
 {
@@ -23,11 +25,10 @@ public struct FDamageInfo
 [Serializable]
 public class DefensiveComponentInfo
 {
-    public float attackDamage;
-    public float attackSpeed;
-    public float criticalChance;
-    public float criticalDamage;
-    public float attackRange;
+    public float maxHealth;
+    public float healthRegen;
+    public float armor;
+    public float magicResist;
 }
 
 public class KDefensiveComponent : KUnitComponent
@@ -39,6 +40,19 @@ public class KDefensiveComponent : KUnitComponent
 
     public bool bIsAutoAttackUntargetable;
     public bool bIsAbilityUntargetable;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        DefensiveComponentInfo info = ReadJson<DefensiveComponentInfo>("defensive");
+
+        //assign values from json info
+        maxHealth = new KBuffableStat(info.maxHealth);
+        healthRegen = new KBuffableStat(info.healthRegen);
+        armor = new KBuffableStat(info.armor);
+        magicResist = new KBuffableStat(info.magicResist);
+    }
 
     public void TakeDamage(FDamageInfo damageInfo)
     {

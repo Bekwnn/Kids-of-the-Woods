@@ -32,7 +32,7 @@ public class KCameraOrderComponent : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 KUnit unitHit = KCameraPawn.GetUnitUnderScreenPos(Input.mousePosition, cameraPawn.cameraComponent);
-                
+
                 if (unitHit != null)
                 {
                     // issue attack order to all selected units

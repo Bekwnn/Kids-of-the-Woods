@@ -25,6 +25,10 @@ public class KUnit : KSelectable
     public KUnitAI aiController;
     public KPlayerState owningPlayer;
 
+    //for json loading
+    public string jsonPath;
+    public string heroJsonName;
+
     public KAutoAttackComponent autoAttackComponent;
     public KDefensiveComponent defensiveComponent;
     public KMovementComponent movementComponent;
@@ -35,6 +39,18 @@ public class KUnit : KSelectable
     public KLevelComponent levelComponent;
 
     protected List<KBuff> activeBuffs;
+
+    virtual protected void InitializeComponents()
+    {
+        autoAttackComponent.Initialize();
+        defensiveComponent.Initialize();
+        movementComponent.Initialize();
+        inventoryComponent.Initialize();
+        gatheringComponent.Initialize();
+        abilityComponent.Initialize();
+        buildComponent.Initialize();
+        levelComponent.Initialize();
+    }
 
     protected void Reset()
     {
@@ -156,7 +172,7 @@ public class KUnit : KSelectable
 
     public void MoveToLocation(Vector3 location)
     {
-        Debug.Log("Moving to: " + location.ToString());
+        //Debug.Log("Moving to: " + location.ToString());
         if (movementComponent != null)
         {
             movementComponent.MoveToLocation(location);

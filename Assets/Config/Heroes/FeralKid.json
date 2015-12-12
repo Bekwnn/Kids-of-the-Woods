@@ -1,5 +1,5 @@
 {
-	"pyroKid": {
+	"feralKid": {
 		"attack": {
 			"attackDamage": 44,
 			"attackSpeed": 0.7,
@@ -28,7 +28,8 @@
 		},
 		"ability": {
 			"maxResource": 330,
-			"resourceRegen": 0.7
+			"resourceRegen": 0.7,
+			"busesMana": true
 		},
 		"gathering": {
 			"gatherSpeed": 1.0,
