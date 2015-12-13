@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 
+//TODO KBuffableStat needs a delegate which gets called on UpdateValue
+
 [Serializable]
 public class KBuffableStat
 {

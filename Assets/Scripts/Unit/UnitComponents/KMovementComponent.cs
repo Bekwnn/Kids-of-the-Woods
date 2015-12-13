@@ -1,25 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+
+[Serializable]
+public class MovementComponentInfo
+{
+    public float moveSpeed;
+    public float turnRate;
+}
 
 public class KMovementComponent : KUnitComponent
 {
     public NavMeshAgent navAgent;
 
-    public KBuffableStat movementSpeed;
+    public KBuffableStat moveSpeed;
     public KBuffableStat turnRate;
 
     public bool bMoveDisabled;
     public bool bTurnDisabled;
     public bool bFlyingMovement;
 
-    void Awake()
+    public override void Initialize()
     {
-        movementSpeed = new KBuffableStat(3.5f);
-        turnRate = new KBuffableStat(100f);
+        base.Initialize();
+
+        MovementComponentInfo info = ReadJson<MovementComponentInfo>("movement");
+
+        //assign values from json info
+        moveSpeed = new KBuffableStat(info.moveSpeed);
+        turnRate = new KBuffableStat(info.turnRate);
+        Debug.Log("Move Speed: " + moveSpeed.modifiedValue);
 
         if (navAgent != null)
         {
-            navAgent.speed = movementSpeed.modifiedValue;
+            navAgent.speed = moveSpeed.modifiedValue;
             navAgent.angularSpeed = turnRate.modifiedValue;
         }
     }

@@ -42,14 +42,14 @@ public class KUnit : KSelectable
 
     virtual protected void InitializeComponents()
     {
-        autoAttackComponent.Initialize();
-        defensiveComponent.Initialize();
-        movementComponent.Initialize();
-        inventoryComponent.Initialize();
-        gatheringComponent.Initialize();
-        abilityComponent.Initialize();
-        buildComponent.Initialize();
-        levelComponent.Initialize();
+        if (autoAttackComponent) autoAttackComponent.Initialize();
+        if (defensiveComponent)  defensiveComponent.Initialize();
+        if (movementComponent)   movementComponent.Initialize();
+        if (inventoryComponent)  inventoryComponent.Initialize();
+        if (gatheringComponent)  gatheringComponent.Initialize();
+        if (abilityComponent)    abilityComponent.Initialize();
+        if (buildComponent)      buildComponent.Initialize();
+        if (levelComponent)      levelComponent.Initialize();
     }
 
     protected void Reset()

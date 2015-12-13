@@ -12,7 +12,7 @@
 			"attackSpeed": 0.1
 		},
 		"movement": {
-			"moveSpeed": 320,
+			"moveSpeed": 3.2,
 			"turnRate": 720
 		},
 		"defensive": {

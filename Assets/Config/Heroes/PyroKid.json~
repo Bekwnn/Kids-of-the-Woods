@@ -12,7 +12,7 @@
 			"attackSpeed": 0.1
 		},
 		"movement": {
-			"moveSpeed": 320,
+			"moveSpeed": 3.2,
 			"turnRate": 720
 		},
 		"defensive": {
@@ -28,7 +28,8 @@
 		},
 		"ability": {
 			"maxResource": 330,
-			"resourceRegen": 0.7
+			"resourceRegen": 0.7,
+			"bUsesMana": true
 		},
 		"gathering": {
 			"gatherSpeed": 1.0,

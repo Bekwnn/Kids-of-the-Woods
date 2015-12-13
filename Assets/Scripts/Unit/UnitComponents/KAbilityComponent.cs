@@ -16,6 +16,13 @@ public class KAbilityComponent : KUnitComponent
     public KBuffableStat resourceRegen;
     public bool bUsesMana;
 
+    public KAbility qAbility;
+    public KAbility wAbility;
+    public KAbility eAbility;
+    public KAbility rAbility;
+    public KAbility dAbility;
+    public KAbility fAbility;
+
     public bool bAbilityCastingDisabled;
     public bool bPassiveAbilityDisabled;
 

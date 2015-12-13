@@ -29,7 +29,7 @@
 		"ability": {
 			"maxResource": 330,
 			"resourceRegen": 0.7,
-			"usesMana": true
+			"busesMana": true
 		},
 		"gathering": {
 			"gatherSpeed": 1.0,
