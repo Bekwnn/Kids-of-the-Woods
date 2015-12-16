@@ -9,6 +9,9 @@ public enum EStatModType
     POST
 };
 
+/// <summary>
+/// Modifies BuffableStat. Can be registered as a flat or percent modifier. Its modification value can be changed after registration (causes BuffableStat to update).
+/// </summary>
 public class KStatModifier
 {
     protected float modValue;

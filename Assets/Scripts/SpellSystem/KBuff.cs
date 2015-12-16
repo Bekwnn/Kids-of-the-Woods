@@ -1,39 +1,59 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public enum EBuffEvent
+/// <summary>
+/// The class representing status effects. Includes several events 
+/// </summary>
+public abstract class KBuff : MonoBehaviour //may want to change from inheriting monobehavior in the future once there are buff ui elements and units start having tons of buffs
 {
-    BEINGHITBYABILITY,
-    BEINGHIT,
-    ATTACKSENT,
-    ATTACKHIT,
-    ABILITYSENT,
-    ABILITYHIT,
+    public KUnit affectedUnit;
 
-}
+    public float duration = 5f;
+    protected float timeRemaining;
 
-public abstract class KBuff : MonoBehaviour
-{
-    public float duration;
+    public float buffTickInterval = 1f;
+    protected float tickIntervalTracker;
 
-    abstract public void OnApplication();
+    virtual public void OnApplication() { timeRemaining = duration; tickIntervalTracker = buffTickInterval; }
 
-    abstract public void OnBuffTick();
+    virtual public void OnBuffTick() { }
 
-    abstract public void OnExpiration();
+    //default behavior on expiration is to destroy the buff component
+    virtual public void OnExpiration() { Destroy(this); }
 
     //default behavior is to call OnExpiration
-    public virtual void OnDispelled() { OnExpiration(); }
+    virtual public void OnDispelled() { OnExpiration(); }
 
-    abstract public void OnBeingHitByAbility(KUnit other);
+    virtual public void OnBeingHit(FDamageInfo damageInfo) { }
 
-    abstract public void OnBeingHit(KUnit other);
+    virtual public void OnBeingHealed(FHealInfo healInfo) { }
 
-    abstract public void OnAttackSent();
+    virtual public void OnAttackSent() { }
 
-    abstract public void OnAttackHit(KUnit other);
+    virtual public void OnAttackHit(KUnit other) { }
 
-    abstract public void OnAbilitySent();
+    virtual public void OnAbilitySent() { }
 
-    abstract public void OnAbilityHit(KUnit other);
+    virtual public void OnAbilityHit(KUnit other) { }
+
+    virtual protected void OnUpdate()
+    {
+        if (duration > 0f)
+        {
+            timeRemaining -= Time.deltaTime;
+            if (timeRemaining < 0f)
+            {
+                affectedUnit.RemoveBuff(this, false);
+            }
+        }
+
+        if (buffTickInterval > 0f)
+        {
+            tickIntervalTracker -= Time.deltaTime;
+            if (tickIntervalTracker < 0f)
+            {
+                OnBuffTick();
+                tickIntervalTracker += buffTickInterval;
+            }
+        }
+    }
 }

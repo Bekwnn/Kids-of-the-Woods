@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-//TODO KBuffableStat needs a delegate which gets called on UpdateValue
-
+/// <summary>
+/// The main class for most character stats. Contains a base value, modified value, and list of modifiers. The modified value is calculated from the base value and the modifiers.
+/// </summary>
 [Serializable]
 public class KBuffableStat
 {

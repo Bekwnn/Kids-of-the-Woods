@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/* Orders are queued within KUnitAI and then call functions within KUnitAI when called upon
- */
+/// <summary>
+/// Orders are queued within KUnitAI and then call functions in the KUnit interface when called upon.
+/// </summary>
 public abstract class KUnitOrder
 {
     protected KUnitAI aiController;

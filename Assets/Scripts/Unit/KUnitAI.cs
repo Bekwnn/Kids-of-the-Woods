@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// Handles orders given by the player for a KUnit.
+/// </summary>
 public class KUnitAI : MonoBehaviour
 {
     public KUnit unit;

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// The world singleton object. Not quite sure what this does yet, but it could be used if for some reason I want to transition between game states (ie, change game modes).
+/// </summary>
 public class KWorld : MonoBehaviour
 {
     // list of current players

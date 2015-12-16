@@ -20,14 +20,17 @@ public enum EUnitType
     HERO
 }
 
+/// <summary>
+/// The core interface of units in the game.
+/// </summary>
 public class KUnit : KSelectable
 {
     public KUnitAI aiController;
     public KPlayerState owningPlayer;
 
     //for json loading
-    public string jsonPath;
-    public string heroJsonName;
+    public string jsonPath { get; protected set; }
+    public string heroJsonName { get; protected set; }
 
     public KAutoAttackComponent autoAttackComponent;
     public KDefensiveComponent defensiveComponent;
@@ -52,7 +55,12 @@ public class KUnit : KSelectable
         if (levelComponent)      levelComponent.Initialize();
     }
 
-    protected void Reset()
+    virtual protected void Initialize()
+    {
+        activeBuffs = new List<KBuff>();
+    }
+
+    void Reset()
     {
         if (autoAttackComponent == null)
             autoAttackComponent = gameObject.GetComponent<KAutoAttackComponent>();
@@ -70,58 +78,81 @@ public class KUnit : KSelectable
             levelComponent = gameObject.GetComponent<KLevelComponent>();
     }
 
-    public void RegisterBuff(KBuff buff)
+    // ------- BUFF INTERFACE --------
+    /// <summary>
+    /// Applies a KBuff of the given type to a unit.
+    /// </summary>
+    /// <typeparam name="KBuffT">Reference to the applied buff.</typeparam>
+    /// <returns></returns>
+    public KBuffT ApplyBuff<KBuffT>() where KBuffT : KBuff
     {
-        activeBuffs.Add(buff);
+        KBuffT newBuff = gameObject.AddComponent<KBuffT>();
+        activeBuffs.Add(newBuff);
+        newBuff.affectedUnit = this;
+        newBuff.OnApplication();
+        return newBuff;
     }
 
-    public void CallEventOnAllBuffs(EBuffEvent eventType, KUnit other = null)
+    public void RemoveBuff(KBuff buff, bool bWasDispelled)
     {
-        switch (eventType)
+        if (activeBuffs.Contains(buff))
         {
-            case EBuffEvent.ATTACKHIT:
-                foreach (KBuff buff in activeBuffs)
-                {
-                    buff.OnAttackHit(other);
-                }
-                break;
-
-            case EBuffEvent.ATTACKSENT:
-                foreach (KBuff buff in activeBuffs)
-                {
-                    buff.OnAttackSent();
-                }
-                break;
-
-            case EBuffEvent.BEINGHIT:
-                foreach (KBuff buff in activeBuffs)
-                {
-                    buff.OnBeingHit(other);
-                }
-                break;
-
-            case EBuffEvent.BEINGHITBYABILITY:
-                foreach (KBuff buff in activeBuffs)
-                {
-                    buff.OnBeingHitByAbility(other);
-                }
-                break;
-
-            case EBuffEvent.ABILITYSENT:
-                foreach (KBuff buff in activeBuffs)
-                {
-                    buff.OnAbilitySent();
-                }
-                break;
-
-            case EBuffEvent.ABILITYHIT:
-                foreach (KBuff buff in activeBuffs)
-                {
-                    buff.OnAbilityHit(other);
-                }
-                break;
+            activeBuffs.Remove(buff);
+            //let buff destroy itself in OnExpiration/OnDispelled
+            if (bWasDispelled) buff.OnDispelled();
+            else               buff.OnExpiration();
         }
     }
+
+    // should these return a bool saying whether or not to abort the action?
+    public void CallAttackHitOnAllBuffs(KUnit other)
+    {
+        foreach (KBuff buff in activeBuffs)
+        {
+            buff.OnAttackHit(other);
+        }
+    }
+
+    public void CallAttackSentOnAllBuffs()
+    {
+        foreach (KBuff buff in activeBuffs)
+        {
+            buff.OnAttackSent();
+        }
+    }
+
+    public void CallBeingHitOnAllBuffs(FDamageInfo damageInfo)
+    {
+        foreach (KBuff buff in activeBuffs)
+        {
+            buff.OnBeingHit(damageInfo);
+        }
+    }
+
+    public void CallBeingHealedOnAllBuffs(FHealInfo healInfo)
+    {
+        foreach (KBuff buff in activeBuffs)
+        {
+            buff.OnBeingHealed(healInfo);
+        }
+    }
+
+    public void CallAbilitySentOnAllBuffs()
+    {
+        foreach (KBuff buff in activeBuffs)
+        {
+            buff.OnAbilitySent();
+        }
+    }
+
+    public void CallAbilityHitOnAllBuffs(KUnit other)
+    {
+        foreach (KBuff buff in activeBuffs)
+        {
+            buff.OnAbilityHit(other);
+        }
+    }
+    // ------- END BUFF INTERFACE --------
 
     public virtual void AddStructureTraits(Dictionary<string, KStructure> teamBuildings)
     {
@@ -211,4 +242,5 @@ public class KUnit : KSelectable
     {
         Debug.Log("Unequipping item");
     }
+    // ------- END ORDER INTERFACE --------
 }

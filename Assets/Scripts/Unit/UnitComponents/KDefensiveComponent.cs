@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using UnityEngine;
 
 public enum EDamageType
@@ -7,6 +6,20 @@ public enum EDamageType
     PHYS,
     MAGIC,
     PURE
+}
+
+public enum EHealCause
+{
+    HEAL,
+    REGEN,
+    DEFAULT
+}
+
+public enum EDamageCause
+{
+    BASICATTACK,
+    ABILITY,
+    DEFAULT
 }
 
 public enum EMaxHPAdjustType
@@ -19,6 +32,7 @@ public enum EMaxHPAdjustType
 public struct FDamageInfo
 {
     public EDamageType damageType;
+    public EDamageCause damageCause;
     public bool bIsNotDamageInstance;
     public bool bIsNonFatal;
     public float flatDamageAmount;
@@ -30,6 +44,7 @@ public struct FDamageInfo
 
 public struct FHealInfo
 {
+    public EHealCause healCause;
     public bool bIgnoresHealingReduction;
     public float flatHealAmount;
     public float percMaxHealthAmount;
@@ -39,7 +54,7 @@ public struct FHealInfo
 }
 
 [Serializable]
-public class DefensiveComponentInfo
+public class JDefensiveComponentInfo
 {
     public float maxHealth;
     public float healthRegen;
@@ -47,10 +62,13 @@ public class DefensiveComponentInfo
     public float magicResist;
 }
 
+/// <summary>
+/// The KUnit component which keeps track of a unit's health and resists. Handles damage and healing.
+/// </summary>
 public class KDefensiveComponent : KUnitComponent
 {
     public float currentHealth;
-    public KBuffableStat maxHealth;
+    public KBuffableStat maxHealth; //TODO: make protected, create readonly get for base/modified value
     public KBuffableStat healthRegen;
     public KBuffableStat armor;
     public KBuffableStat magicResist;
@@ -62,7 +80,7 @@ public class KDefensiveComponent : KUnitComponent
     {
         base.Initialize();
 
-        DefensiveComponentInfo info = ReadJson<DefensiveComponentInfo>("defensive");
+        JDefensiveComponentInfo info = ReadJson<JDefensiveComponentInfo>("defensive");
 
         //assign values from json info
         maxHealth = new KBuffableStat(info.maxHealth);
@@ -93,6 +111,8 @@ public class KDefensiveComponent : KUnitComponent
             else damageTotal *= 2f - 100 / (100 - magicResist.modifiedValue);
         }
 
+        unit.CallBeingHitOnAllBuffs(damageInfo);
+
         currentHealth = Math.Max(currentHealth - damageTotal, 0f);
         Debug.Log("Current health: " + currentHealth);
         //TODO: death (check bIsFatal)
@@ -106,25 +126,62 @@ public class KDefensiveComponent : KUnitComponent
         healTotal += healInfo.percMaxHealthAmount * maxHealth.modifiedValue;
         healTotal += healInfo.percMisHealthAmount * (maxHealth.modifiedValue - currentHealth);
 
+        unit.CallBeingHealedOnAllBuffs(healInfo);
+
+        // should CallXOnAllBuffs return a bool saying whether or not to abort the action?
         currentHealth = Math.Min(currentHealth + healTotal, maxHealth.modifiedValue);
     }
     
-    public void AdjustMaxHealth(EMaxHPAdjustType adjustType)
+    public void AdjustMaxHealth(KStatModifier mod, EMaxHPAdjustType adjustType)
     {
-        //TODO (fucking... how? has to work with KBuffableStat adjusting)
+        float curhp = currentHealth;
+        float maxhp = maxHealth.modifiedValue;
+        maxHealth.AddModifier(mod);
+
+        switch (adjustType)
+        {
+            case EMaxHPAdjustType.MISSINGHPSAME:
+                currentHealth = Math.Max(maxHealth.modifiedValue - (maxhp - curhp), 1f);
+                break;
+            case EMaxHPAdjustType.PERCENTSAME:
+                currentHealth = maxHealth.modifiedValue * (curhp / maxhp);
+                break;
+            default:
+                //do nothing
+                break;
+        }
     }
 
     void Update()
     {
         RegenHealth();
 
-        //TODO remove
+        //TODO remove (testing damage)
         if (Input.GetKeyDown(KeyCode.F))
         {
             FDamageInfo damage = new FDamageInfo();
             damage.damageType = EDamageType.PHYS;
             damage.flatDamageAmount = 20f;
             TakeDamage(damage);
+            Debug.Log("hp: " + currentHealth + "/" + maxHealth.modifiedValue);
+        }
+
+        //TODO remove (testing adjust hp)
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            KStatModifier buff = new KStatModifier();
+            buff.modType = EStatModType.ADD;
+            buff.ModValue = 0.1f; // 10% buff
+            AdjustMaxHealth(buff, EMaxHPAdjustType.PERCENTSAME);
+            Debug.Log("hp: " + currentHealth + "/" + maxHealth.modifiedValue);
+        }
+
+        //TODO remove (testing adjust hp)
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            KTestBuff buff = unit.ApplyBuff<KTestBuff>();
+            buff.duration = 5f;
+            buff.buffTickInterval = 1f;
         }
     }
 

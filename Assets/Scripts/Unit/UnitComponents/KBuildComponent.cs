@@ -3,11 +3,14 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class BuildComponentInfo
+public class JBuildComponentInfo
 {
     public float buildSpeed;
 }
 
+/// <summary>
+/// The KUnit component which keeps track of a unit's building abilities.
+/// </summary>
 public class KBuildComponent : KUnitComponent
 {
     public KBuffableStat buildSpeed;
@@ -16,7 +19,7 @@ public class KBuildComponent : KUnitComponent
     {
         base.Initialize();
 
-        BuildComponentInfo info = ReadJson<BuildComponentInfo>("build");
+        JBuildComponentInfo info = ReadJson<JBuildComponentInfo>("build");
 
         //assign values from json info
         buildSpeed = new KBuffableStat(info.buildSpeed);

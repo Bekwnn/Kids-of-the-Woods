@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// The main camera component. Acts as a public interface to the camera and couples components together.
+/// </summary>
 [RequireComponent (typeof (KCameraMovementComponent))]
-[RequireComponent(typeof (KCameraSelectionComponent))]
-
-/*
- * Management component for various camera pawn systems
- */
-
+[RequireComponent (typeof (KCameraSelectionComponent))]
 public class KCameraPawn : MonoBehaviour
 {
     // reference to owning player:

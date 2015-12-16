@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// This class controls camera movement, including side-scroll, middle mouse panning, and jump-to-location (for minimap/cinematic use).
+/// </summary>
 public class KCameraMovementComponent : MonoBehaviour
 {
     // main component

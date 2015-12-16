@@ -9,6 +9,9 @@ public enum EAbilityCastMethod
     DRAGAIMED
 };
 
+/// <summary>
+/// Representation of a unit's ability. Contains a reference to a passive and an active, as well as ability casting methods and ability data.
+/// </summary>
 public abstract class KAbility : MonoBehaviour
 {
     public KBuff passive;

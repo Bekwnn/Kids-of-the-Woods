@@ -3,13 +3,16 @@ using System.IO;
 using UnityEngine;
 
 [Serializable]
-public class AbilityComponentInfo
+public class JAbilityComponentInfo
 {
     public float maxResource;
     public float resourceRegen;
     public bool bUsesMana;
 }
 
+/// <summary>
+/// The KUnit component which keeps track of a unit's abilities.
+/// </summary>
 public class KAbilityComponent : KUnitComponent
 {
     public KBuffableStat maxResource;
@@ -30,7 +33,7 @@ public class KAbilityComponent : KUnitComponent
     {
         base.Initialize();
 
-        AbilityComponentInfo info = ReadJson<AbilityComponentInfo>("ability");
+        JAbilityComponentInfo info = ReadJson<JAbilityComponentInfo>("ability");
 
         //assign values from json info
         maxResource = new KBuffableStat(info.maxResource);

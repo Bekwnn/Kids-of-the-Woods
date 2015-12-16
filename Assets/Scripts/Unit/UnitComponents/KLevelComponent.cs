@@ -3,12 +3,15 @@ using System.Collections;
 using System;
 
 [Serializable]
-public class LevelComponentInfo
+public class JLevelComponentInfo
 {
     public float experienceGainRate;
     public float experienceRadius;
 }
 
+/// <summary>
+/// Handles the KUnit's experience and leveling up.
+/// </summary>
 public class KLevelComponent : KUnitComponent
 {
     public int level;
@@ -21,7 +24,7 @@ public class KLevelComponent : KUnitComponent
     {
         base.Initialize();
 
-        LevelComponentInfo info = ReadJson<LevelComponentInfo>("defensive");
+        JLevelComponentInfo info = ReadJson<JLevelComponentInfo>("defensive");
 
         //assign values from json info
         experienceGainRate = new KBuffableStat(info.experienceGainRate);

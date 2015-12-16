@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/*
- * Component allows camera pawn to issue orders to units and cast abilities
- */
-
+/// <summary>
+/// The camera component which handles issuing selected units orders. Includes move orders, spell cast orders, attack orders, hold position orders, etc.
+/// </summary>
 public class KCameraOrderComponent : MonoBehaviour
 {
     // ref to management component

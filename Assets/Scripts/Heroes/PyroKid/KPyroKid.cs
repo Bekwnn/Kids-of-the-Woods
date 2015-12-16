@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// Main class of the Feral Kid character.
+/// The main class of the Pyro Kid character.
 /// </summary>
-public class KFeralKid : KUnit
+public class KPyroKid : KUnit
 {
     void Awake()
     {
-        jsonPath = @"C:\Users\Bekwnn2\Kids of the Woods\Assets\Config\Heroes\FeralKid.json";
-        heroJsonName = "feralKid";
+        jsonPath = @"C:\Users\Bekwnn2\Kids of the Woods\Assets\Config\Heroes\PyroKid.json";
+        heroJsonName = "pyroKid";
         Initialize();
         InitializeComponents();
     }
 
     public override void AddStructureTraits(Dictionary<string, KStructure> teamBuildings)
     {
-        Debug.Log("Feral Kid's traits added to team buildings!");
+        Debug.Log("Pyro Kid's traits added to team structures!");
     }
 }

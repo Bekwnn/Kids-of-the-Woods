@@ -3,12 +3,15 @@ using System.Collections;
 using System;
 
 [Serializable]
-public class MovementComponentInfo
+public class JMovementComponentInfo
 {
     public float moveSpeed;
     public float turnRate;
 }
 
+/// <summary>
+/// Controls navigation and movement of KUnit.
+/// </summary>
 public class KMovementComponent : KUnitComponent
 {
     public NavMeshAgent navAgent;
@@ -24,7 +27,7 @@ public class KMovementComponent : KUnitComponent
     {
         base.Initialize();
 
-        MovementComponentInfo info = ReadJson<MovementComponentInfo>("movement");
+        JMovementComponentInfo info = ReadJson<JMovementComponentInfo>("movement");
 
         //assign values from json info
         moveSpeed = new KBuffableStat(info.moveSpeed);

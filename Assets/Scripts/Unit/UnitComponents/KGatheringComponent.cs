@@ -1,12 +1,15 @@
 ﻿using System;
 
 [Serializable]
-public class GatheringComponentInfo
+public class JGatheringComponentInfo
 {
     public float gatherSpeed;
     public float gatherYield;
 }
 
+/// <summary>
+/// The KUnit component which handles various methods of gathering different resources.
+/// </summary>
 public class KGatheringComponent : KUnitComponent
 {
     public KBuffableStat gatherSpeed;
@@ -16,7 +19,7 @@ public class KGatheringComponent : KUnitComponent
     {
         base.Initialize();
 
-        GatheringComponentInfo info = ReadJson<GatheringComponentInfo>("gathering");
+        JGatheringComponentInfo info = ReadJson<JGatheringComponentInfo>("gathering");
 
         //assign values from json info
         gatherSpeed = new KBuffableStat(info.gatherSpeed);

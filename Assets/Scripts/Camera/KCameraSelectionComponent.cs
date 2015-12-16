@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+/// <summary>
+/// The camera component in charge of selecting units: friendly or enemy. Handles box selection, etc.
+/// </summary>
 public class KCameraSelectionComponent : MonoBehaviour
 {
     // main component

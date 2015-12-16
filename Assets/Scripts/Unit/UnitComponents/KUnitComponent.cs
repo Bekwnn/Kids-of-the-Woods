@@ -12,11 +12,11 @@ public abstract class KUnitComponent : MonoBehaviour
         //nothing for now
     }
 
-    public T ReadJson<T>(string componentJsonName)
+    protected T ReadJson<T>(string componentJsonName)
     {
         // read json
-        string[] heroJson = JsonHelper.GetJsonObject(File.ReadAllText(unit.jsonPath), unit.heroJsonName);
-        string[] componentJson = JsonHelper.GetJsonObject(heroJson[0], componentJsonName);
-        return JsonUtility.FromJson<T>(componentJson[0]);
-    } 
+        string heroJson = JsonHelper.GetJsonObject(File.ReadAllText(unit.jsonPath), unit.heroJsonName);
+        string componentJson = JsonHelper.GetJsonObject(heroJson, componentJsonName);
+        return JsonUtility.FromJson<T>(componentJson);
+    }
 }

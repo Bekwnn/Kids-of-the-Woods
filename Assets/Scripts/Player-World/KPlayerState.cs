@@ -7,6 +7,9 @@ public struct FPlayerStats
 
 }
 
+/// <summary>
+/// The state of the player. This is the main representation of the player in the game.
+/// </summary>
 public class KPlayerState : MonoBehaviour
 {
     public KUnit playerHero;
