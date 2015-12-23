@@ -15,8 +15,12 @@ public class JAbilityComponentInfo
 /// </summary>
 public class KAbilityComponent : KUnitComponent
 {
+    [HideInInspector]
     public KBuffableStat maxResource;
+
+    [HideInInspector]
     public KBuffableStat resourceRegen;
+
     public bool bUsesMana;
 
     public KAbility qAbility;

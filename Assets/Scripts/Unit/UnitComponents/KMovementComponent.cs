@@ -16,7 +16,10 @@ public class KMovementComponent : KUnitComponent
 {
     public NavMeshAgent navAgent;
 
+    [HideInInspector]
     public KBuffableStat moveSpeed;
+
+    [HideInInspector]
     public KBuffableStat turnRate;
 
     public bool bMoveDisabled;
@@ -32,7 +35,6 @@ public class KMovementComponent : KUnitComponent
         //assign values from json info
         moveSpeed = new KBuffableStat(info.moveSpeed);
         turnRate = new KBuffableStat(info.turnRate);
-        Debug.Log("Move Speed: " + moveSpeed.modifiedValue);
 
         if (navAgent != null)
         {

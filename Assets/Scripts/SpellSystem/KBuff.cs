@@ -23,6 +23,8 @@ public abstract class KBuff : MonoBehaviour //may want to change from inheriting
     //default behavior is to call OnExpiration
     virtual public void OnDispelled() { OnExpiration(); }
 
+    // OnBeingHit and OnBeingHealed might want to be able to modify the damageInfo and then return it?
+    // how would you negate a damage instance?
     virtual public void OnBeingHit(FDamageInfo damageInfo) { }
 
     virtual public void OnBeingHealed(FHealInfo healInfo) { }

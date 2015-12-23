@@ -13,6 +13,7 @@ public class JBuildComponentInfo
 /// </summary>
 public class KBuildComponent : KUnitComponent
 {
+    [HideInInspector]
     public KBuffableStat buildSpeed;
 
     public override void Initialize()

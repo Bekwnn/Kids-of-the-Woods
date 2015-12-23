@@ -68,9 +68,17 @@ public class JDefensiveComponentInfo
 public class KDefensiveComponent : KUnitComponent
 {
     public float currentHealth;
+
+    [HideInInspector]
     public KBuffableStat maxHealth; //TODO: make protected, create readonly get for base/modified value
+
+    [HideInInspector]
     public KBuffableStat healthRegen;
+
+    [HideInInspector]
     public KBuffableStat armor;
+
+    [HideInInspector]
     public KBuffableStat magicResist;
 
     public bool bIsAutoAttackUntargetable;
@@ -111,10 +119,10 @@ public class KDefensiveComponent : KUnitComponent
             else damageTotal *= 2f - 100 / (100 - magicResist.modifiedValue);
         }
 
-        unit.CallBeingHitOnAllBuffs(damageInfo);
+        if (!damageInfo.bIsNotDamageInstance) unit.CallBeingHitOnAllBuffs(damageInfo);
 
         currentHealth = Math.Max(currentHealth - damageTotal, 0f);
-        Debug.Log("Current health: " + currentHealth);
+        Debug.Log("Damage after resists: " + damageTotal + ", hp: " + currentHealth + "/" + maxHealth.modifiedValue);
         //TODO: death (check bIsFatal)
     }
 

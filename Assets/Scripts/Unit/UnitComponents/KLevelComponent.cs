@@ -15,8 +15,13 @@ public class JLevelComponentInfo
 public class KLevelComponent : KUnitComponent
 {
     public int level;
+
+    [HideInInspector]
     public KBuffableStat experienceGainRate;
+
+    [HideInInspector]
     public KBuffableStat experienceRadius;
+
     public float experienceToNextLevel;
     public float currentExperience;
 

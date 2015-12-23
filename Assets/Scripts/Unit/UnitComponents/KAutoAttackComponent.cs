@@ -16,11 +16,22 @@ public class JAutoAttackComponentInfo
 /// </summary>
 public class KAutoAttackComponent : KUnitComponent
 {
+    [HideInInspector]
     public KBuffableStat attackDamage;
+
+    [HideInInspector]
     public KBuffableStat attackSpeed;
+
+    [HideInInspector]
     public KBuffableStat criticalChance;
+
+    [HideInInspector]
     public KBuffableStat criticalDamage;
+
+    [HideInInspector]
     public KBuffableStat attackRange;
+
+    public KUnitAnimations animations;
 
     override public void Initialize()
     {
@@ -50,15 +61,18 @@ public class KAutoAttackComponent : KUnitComponent
     public void TryAttackingTarget(KUnit target)
     {
         Debug.Log("Attempting to attack target");
+        StartAttack();
     }
 
     protected void StartAttack()
     {
         //TODO
+        animations.StartAttack();
     }
 
     protected void LaunchAttack()
     {
         //TODO
+        Debug.Log("launching attack");
     }
 }

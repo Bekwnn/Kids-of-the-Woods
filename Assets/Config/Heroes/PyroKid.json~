@@ -3,7 +3,7 @@
 		"attack": {
 			"attackDamage": 44,
 			"attackSpeed": 0.7,
-			"attackRange": 5.0,
+			"attackRange": 1.5,
 			"critChance": 0.0,
 			"critDamage": 2.0
 		},
@@ -24,12 +24,17 @@
 		"defensiveGrowth": {
 			"maxHealth": 22,
 			"healthRegen": 0.2,
-			"armor": 2
+			"armor": 2,
+			"magicResist": 1
 		},
 		"ability": {
 			"maxResource": 330,
 			"resourceRegen": 0.7,
 			"bUsesMana": true
+		},
+		"abilityGrowth": {
+			"maxResource": 16,
+			"resourceRegen": 0.15
 		},
 		"gathering": {
 			"gatherSpeed": 1.0,

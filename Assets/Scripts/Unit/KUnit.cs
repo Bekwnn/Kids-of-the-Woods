@@ -93,6 +93,11 @@ public class KUnit : KSelectable
         return newBuff;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="buff">The buff object to be removed</param>
+    /// <param name="bWasDispelled">Determines whether the buff should call OnExpire or OnDispell</param>
     public void RemoveBuff(KBuff buff, bool bWasDispelled)
     {
         if (activeBuffs.Contains(buff))

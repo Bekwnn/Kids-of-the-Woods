@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class JGatheringComponentInfo
@@ -12,7 +13,10 @@ public class JGatheringComponentInfo
 /// </summary>
 public class KGatheringComponent : KUnitComponent
 {
+    [HideInInspector]
     public KBuffableStat gatherSpeed;
+
+    [HideInInspector]
     public KBuffableStat gatherYield;
 
     public override void Initialize()

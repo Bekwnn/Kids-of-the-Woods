@@ -4,9 +4,13 @@ using System.Collections.Generic;
 /// <summary>
 /// Handles orders given by the player for a KUnit.
 /// </summary>
+
+//TODO input buffering and order interruption/canceling
 public class KUnitAI : MonoBehaviour
 {
     public KUnit unit;
+
+    public KUnitAnimations animations;
 
     protected Queue<KUnitOrder> orderQueue;
     protected bool bWaitingNewOrder;
@@ -65,6 +69,7 @@ public class KUnitAI : MonoBehaviour
     {
         orderQueue.Clear();
         bWaitingNewOrder = true;
+        animations.CancelAttack();
         QueueMoveOrder(position);
     }
 

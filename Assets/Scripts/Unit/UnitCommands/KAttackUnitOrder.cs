@@ -13,7 +13,7 @@ public class KAttackUnitOrder : KUnitOrder
 
     public override void Execute()
     {
-        aiController.unit.AutoAttackTarget(targetUnit);
+        //do nothing
     }
 
     public override void OrderUpdate()
