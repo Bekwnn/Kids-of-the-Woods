@@ -60,6 +60,7 @@ public class KAutoAttackComponent : KUnitComponent
 
     public void TryAttackingTarget(KUnit target)
     {
+        if (target == unit) return;
         Debug.Log("Attempting to attack target");
         StartAttack();
     }
