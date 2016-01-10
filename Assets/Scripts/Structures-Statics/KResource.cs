@@ -6,5 +6,10 @@ using System.Collections;
 /// </summary>
 public class KResource : KSelectable
 {
-	
+    public float resourceLeft;
+
+    public void OnGathered(FGatherInfo gatherInfo)
+    {
+
+    }
 }

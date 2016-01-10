@@ -93,6 +93,7 @@ public class KCameraSelectionComponent : MonoBehaviour
         collider.size = new Vector3(Mathf.Abs(posA.x - posB.x), BOXHEIGHT, Mathf.Abs(posA.z - posB.z));
 
         //TODO: collision with box select area and get all KUnits inside
+        // (Note: box select should only select units. Buildings and other selectables must be selected with left click methods.)
     }
 
     protected void SingleSelect(Vector2 screenPos)

@@ -10,25 +10,24 @@ public enum EAbilityCastMethod
 };
 
 /// <summary>
-/// Representation of a unit's ability. Contains a reference to a passive and an active, as well as ability casting methods and ability data.
+/// Representation of a unit's ability. Contains a reference to a passive and an active, as well as ability casting methods and skill-level data.
 /// </summary>
 public abstract class KAbility : MonoBehaviour
 {
     public KBuff passive;
-    public KAbilityPart active;
+    public GameObject active;
     public EAbilityCastMethod castMethod;
 
-    public bool bLearned;
+    public int  abilityLevel;
     public bool bHasActive;
     public bool bActiveNotReady;    // used not just for cooldowns, but also if actives have a requirement to be usable (ex, enemy has to be debuffed with something)
-    public bool bHasPassive;
 
     public float cooldown;
     public float range;
 
     virtual public void CastActive()
     {
-        if (!bLearned) Debug.Log("Spell not yet learned.");
-        if (!bHasActive) Debug.Log("Ability has no active.");
+        if (!bHasActive)           Debug.Log("Ability has no active.");
+        else if (abilityLevel < 1) Debug.Log("Spell not yet learned.");
     }
 }

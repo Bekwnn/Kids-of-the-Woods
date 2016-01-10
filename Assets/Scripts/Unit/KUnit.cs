@@ -94,7 +94,7 @@ public class KUnit : KSelectable
     }
 
     /// <summary>
-    /// 
+    /// Removes an active buff from the unit
     /// </summary>
     /// <param name="buff">The buff object to be removed</param>
     /// <param name="bWasDispelled">Determines whether the buff should call OnExpire or OnDispell</param>

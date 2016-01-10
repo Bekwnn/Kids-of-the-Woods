@@ -8,6 +8,12 @@ public class JGatheringComponentInfo
     public float gatherYield;
 }
 
+public struct FGatherInfo
+{
+    public KUnit unit;
+    public int yield;
+}
+
 /// <summary>
 /// The KUnit component which handles various methods of gathering different resources.
 /// </summary>
