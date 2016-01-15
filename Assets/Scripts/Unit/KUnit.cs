@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-//for most units, all are false
+//all status effect vars should be false by default
 public struct FUnitStatus
 {
     public bool bMoveDisabled;
@@ -15,9 +15,11 @@ public struct FUnitStatus
 
 public enum EUnitType
 {
-    SUMMON,
-    MONSTER,
-    HERO
+    SUMMON,    //temporary summons
+    BASIC,     //buildable units and neutral monsters
+    HERO,      //hero type units
+    RESOURCE,  //resource nodes such as wood
+    STRUCTURE  //buildings
 }
 
 /// <summary>
@@ -30,7 +32,7 @@ public class KUnit : KSelectable
 
     //for json loading
     public string jsonPath { get; protected set; }
-    public string heroJsonName { get; protected set; }
+    public string jsonName { get; protected set; }
 
     public KAutoAttackComponent autoAttackComponent;
     public KDefensiveComponent defensiveComponent;
@@ -40,6 +42,8 @@ public class KUnit : KSelectable
     public KAbilityComponent abilityComponent;
     public KBuildComponent buildComponent;
     public KLevelComponent levelComponent;
+    public KResourceComponent resourceComponent;
+    public KStructureComponent structureComponent;
 
     protected List<KBuff> activeBuffs;
 
@@ -175,7 +179,7 @@ public class KUnit : KSelectable
         }
     }
     
-    public void GatherResource(KResource target)
+    public void GatherResource(KUnit target)
     {
         Debug.Log("Gathering resource");
         if (gatheringComponent != null)
@@ -184,7 +188,6 @@ public class KUnit : KSelectable
         }
     }
     
-    //needs to work for structures and units (use an attackable interface?)
     public void AutoAttackTarget(KUnit target)
     {
         Debug.Log("Trying to attack target");
@@ -229,7 +232,7 @@ public class KUnit : KSelectable
         }
     }
 
-    public void BuildStructure(KStructure structure)
+    public void BuildStructure(KUnit structure)
     {
         Debug.Log("Building structure");
         if (buildComponent != null)

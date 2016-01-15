@@ -9,7 +9,7 @@ public class KPyroKid : KUnit
     void Awake()
     {
         jsonPath = @"C:\Users\Bekwnn2\Kids of the Woods\Assets\Config\Heroes\PyroKid.json";
-        heroJsonName = "pyroKid";
+        jsonName = "pyroKid";
         Initialize();
         InitializeComponents();
     }

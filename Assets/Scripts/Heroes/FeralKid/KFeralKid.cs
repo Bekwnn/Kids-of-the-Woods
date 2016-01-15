@@ -9,7 +9,7 @@ public class KFeralKid : KUnit
     void Awake()
     {
         jsonPath = @"C:\Users\Bekwnn2\Kids of the Woods\Assets\Config\Heroes\FeralKid.json";
-        heroJsonName = "feralKid";
+        jsonName = "feralKid";
         Initialize();
         InitializeComponents();
     }
