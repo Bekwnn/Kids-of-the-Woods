@@ -9,7 +9,8 @@ public enum EAbilitySlot
 	E,
 	R,
 	D,
-	F
+	F,
+	NONE
 }
 
 [Serializable]
@@ -60,8 +61,51 @@ public class KAbilityComponent : KUnitComponent
 
     }
 
-	public void CastAbility(KAbility ability, KCastParams castParams)
+	public void CastAbility(EAbilitySlot abilitySlot, KCastParams castParams)
 	{
-		
+		switch (abilitySlot)
+		{
+			case EAbilitySlot.Q:
+				qAbility.CastActive(castParams);
+				break;
+			case EAbilitySlot.W:
+				wAbility.CastActive(castParams);
+				break;
+			case EAbilitySlot.E:
+				eAbility.CastActive(castParams);
+				break;
+			case EAbilitySlot.R:
+				rAbility.CastActive(castParams);
+				break;
+			case EAbilitySlot.D:
+				dAbility.CastActive(castParams);
+				break;
+			case EAbilitySlot.F:
+				fAbility.CastActive(castParams);
+				break;
+			default:
+				break;
+		}
+	}
+
+	public KAbility GetAbility(EAbilitySlot abilitySlot)
+	{
+		switch (abilitySlot)
+		{
+			case EAbilitySlot.Q:
+				return (qAbility == null)? null : qAbility;
+			case EAbilitySlot.W:
+				return (wAbility == null)? null : wAbility;
+			case EAbilitySlot.E:
+				return (eAbility == null)? null : eAbility;
+			case EAbilitySlot.R:
+				return (rAbility == null)? null : rAbility;
+			case EAbilitySlot.D:
+				return (dAbility == null)? null : dAbility;
+			case EAbilitySlot.F:
+				return (fAbility == null)? null : fAbility;
+			default:
+				return null;
+		}
 	}
 }

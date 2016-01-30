@@ -3,14 +3,13 @@
 //TODO: figure out how to handle ability cast orders
 public class KAbilityCastOrder : KUnitOrder
 {
-    public static float MOVEACCEPTRADIUS = 1f; //TODO replace with ability cast range
-    protected KAbility ability;
+    protected EAbilitySlot abilitySlot;
     protected KCastParams castParams;
 
-    public KAbilityCastOrder(KUnitAI ai, KAbility ability, KCastParams abilityParams)
+    public KAbilityCastOrder(KUnitAI ai, EAbilitySlot abilitySlot, KCastParams castingParams)
     {
         aiController = ai;
-        castParams = abilityParams;
+        castParams = castingParams;
     }
 
     public override void Execute()
@@ -21,9 +20,11 @@ public class KAbilityCastOrder : KUnitOrder
     //TODO: order finishes when ability cast animation starts
     public override void OrderUpdate()
     {
-        if (Vector3.Distance(aiController.transform.position, castParams.targetLocation) < MOVEACCEPTRADIUS)
+		float range = aiController.unit.abilityComponent.GetAbility(abilitySlot).range;
+        if (Vector3.Distance(aiController.transform.position, castParams.targetLocation) < range || range == 0f)
         {
-            aiController.unit.CastAbility(ability, castParams);
+			aiController.unit.StopMoving();
+            aiController.unit.CastAbility(abilitySlot, castParams);
             OrderFinished();
         }
     }

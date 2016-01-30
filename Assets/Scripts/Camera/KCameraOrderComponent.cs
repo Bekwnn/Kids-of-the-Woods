@@ -11,7 +11,7 @@ public class KCameraOrderComponent : MonoBehaviour
     
     // spell order tracking
     public bool bTryingToCast { get; protected set; }
-	public KAbility abilityToCast { get; protected set; }
+	public EAbilitySlot abilityToCast { get; protected set; }
 	public KCastParams castParams { get; protected set; }
 	protected int targetsToPick;
 	protected bool bQueueSpellOrder;
@@ -23,32 +23,32 @@ public class KCameraOrderComponent : MonoBehaviour
 		if (Input.GetButtonDown("Spell1"))
 		{
 			if (bUnitsSelected)
-				PrepareCast(cameraPawn.owningPlayer.selectedUnits[0].abilityComponent.qAbility);
+				PrepareCast(EAbilitySlot.Q);
 		}
 		else if (Input.GetButtonDown("Spell2"))
 		{
 			if (bUnitsSelected)
-				PrepareCast(cameraPawn.owningPlayer.selectedUnits[0].abilityComponent.wAbility);
+				PrepareCast(EAbilitySlot.W);
 		}
 		else if (Input.GetButtonDown("Spell3"))
 		{
 			if (bUnitsSelected)
-				PrepareCast(cameraPawn.owningPlayer.selectedUnits[0].abilityComponent.eAbility);
+				PrepareCast(EAbilitySlot.E);
 		}
 		else if (Input.GetButtonDown("Spell4"))
 		{
 			if (bUnitsSelected)
-				PrepareCast(cameraPawn.owningPlayer.selectedUnits[0].abilityComponent.rAbility);
+				PrepareCast(EAbilitySlot.R);
 		}
 		else if (Input.GetButtonDown("Spell5"))
 		{
 			if (bUnitsSelected)
-				PrepareCast(cameraPawn.owningPlayer.selectedUnits[0].abilityComponent.dAbility);
+				PrepareCast(EAbilitySlot.D);
 		}
 		else if (Input.GetButtonDown("Spell6"))
 		{
 			if (bUnitsSelected)
-				PrepareCast(cameraPawn.owningPlayer.selectedUnits[0].abilityComponent.fAbility);
+				PrepareCast(EAbilitySlot.F);
 		}
 
         if (!bTryingToCast)
@@ -125,14 +125,26 @@ public class KCameraOrderComponent : MonoBehaviour
             // cancel ability cast
 			bTryingToCast = false;
 			castParams = new KCastParams();
-			abilityToCast = null;
+			abilityToCast = EAbilitySlot.NONE;
 			targetsToPick = 0;
         }
     }
 
-	protected void PrepareCast(KAbility ability)
+	protected void PrepareCast(EAbilitySlot abilitySlot)
 	{
 		KCastParams instParams = new KCastParams();
+
+		if (cameraPawn.owningPlayer.selectedUnits[0].abilityComponent == null)
+		{
+			Debug.Log("Unit has no abilities.");
+			return;
+		}
+		KAbility ability = cameraPawn.owningPlayer.selectedUnits[0].abilityComponent.GetAbility(abilitySlot);
+		if (ability == null)
+		{
+			Debug.Log("Unit does not have that ability.");
+			return;
+		}
 
 		//get the mode and set
 		if (ability.castMethod == EAbilityCastMethod.ONPRESS)
@@ -146,7 +158,7 @@ public class KCameraOrderComponent : MonoBehaviour
 		}
 		else
 		{
-			abilityToCast = ability;
+			abilityToCast = abilitySlot;
 			bTryingToCast = true;
 
 			if (ability.castMethod == EAbilityCastMethod.LINEDRAG)

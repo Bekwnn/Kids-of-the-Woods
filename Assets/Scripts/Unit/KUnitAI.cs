@@ -118,16 +118,16 @@ public class KUnitAI : MonoBehaviour
         orderQueue.Enqueue(attackUnitOrder);
     }
 
-    public void IssueAbilityCastOrder(KAbility ability, KCastParams castParams)
+    public void IssueAbilityCastOrder(EAbilitySlot abilitySlot, KCastParams castParams)
     {
         orderQueue.Clear();
         bWaitingNewOrder = true;
-        QueueAbilityCastOrder(ability, castParams);
+        QueueAbilityCastOrder(abilitySlot, castParams);
     }
 
-    public void QueueAbilityCastOrder(KAbility ability, KCastParams castParams)
+    public void QueueAbilityCastOrder(EAbilitySlot abilitySlot, KCastParams castParams)
     {
-        KAbilityCastOrder abilityOrder = new KAbilityCastOrder(this, ability, castParams);
+        KAbilityCastOrder abilityOrder = new KAbilityCastOrder(this, abilitySlot, castParams);
         orderQueue.Enqueue(abilityOrder);
     }
 }

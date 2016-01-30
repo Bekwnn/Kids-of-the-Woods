@@ -34,6 +34,8 @@ public class KCastParams
 	//holds successive target locations and units
 	public List<Vector3> targetLocations;
 	public List<KUnit> targetUnits;
+
+	public KAbility ability;
 }
 
 /// <summary>

@@ -223,12 +223,13 @@ public class KUnit : KSelectable
         movementComponent.StopMoving();
     }
 
-    public void CastAbility(KAbility ability, KCastParams castParams)
+    public void CastAbility(EAbilitySlot abilitySlot, KCastParams castParams)
     {
-        Debug.Log("Casting ability");
+        Debug.Log("Casting ability...");
         if (abilityComponent != null)
         {
-            abilityComponent.CastAbility(ability, castParams);
+			Debug.Log("Ability Component found!");
+            abilityComponent.CastAbility(abilitySlot, castParams);
         }
     }
 
