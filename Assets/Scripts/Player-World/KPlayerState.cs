@@ -32,7 +32,7 @@ public class KPlayerState : MonoBehaviour
         selectedUnits.Clear();
     }
 
-    public void AddHeroStructureTraits(Dictionary<string, KStructure> teamBuildings)
+    public void AddHeroStructureTraits(Dictionary<string, KUnit> teamBuildings)
     {
         playerHero.AddStructureTraits(teamBuildings);
     }

@@ -26,7 +26,7 @@ public class KBuildComponent : KUnitComponent
         buildSpeed = new KBuffableStat(info.buildSpeed);
     }
 
-    public void Build(KStructure structure)
+    public void Build(KUnit structure)
     {
         //TODO
     }

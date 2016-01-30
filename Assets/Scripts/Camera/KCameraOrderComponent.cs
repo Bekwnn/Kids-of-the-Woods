@@ -58,7 +58,8 @@ public class KCameraOrderComponent : MonoBehaviour
                     // issue attack order to all selected units
                     foreach (KUnit unit in cameraPawn.owningPlayer.selectedUnits)
                     {
-                        unit.aiController.IssueAttackUnitOrder(unitHit);
+                        if (unitHit.defensiveComponent) unit.aiController.IssueAttackUnitOrder(unitHit);
+                        else if (unitHit.resourceComponent) unit.aiController.IssueGatherOrder(unitHit);
                     }
                 }
                 else

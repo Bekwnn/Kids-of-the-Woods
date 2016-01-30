@@ -6,8 +6,8 @@ using System.Collections.Generic;
 /// </summary>
 public class KTeamBuildingManager : MonoBehaviour
 {
-    Dictionary<string, KStructure> buildableStructures;
-    List<KStructure> livingStructures;
+    Dictionary<string, KUnit> buildableStructures;
+    List<KUnit> livingStructures;
 
     public void AddHeroStructures(List<KPlayerState> playerStates)
     {

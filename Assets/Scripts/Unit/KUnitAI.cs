@@ -26,6 +26,14 @@ public class KUnitAI : MonoBehaviour
         OrderUpdate();
     }
 
+    void Reset()
+    {
+        if (unit == null)
+            unit = GetComponent<KUnit>();
+        if (animations == null)
+            animations = GetComponent<KUnitAnimations>();
+    }
+
     protected void OrderUpdate()
     {
         // if we have any orders in queue
@@ -129,5 +137,18 @@ public class KUnitAI : MonoBehaviour
     {
         KAbilityCastOrder abilityOrder = new KAbilityCastOrder(this, ability, location);
         orderQueue.Enqueue(abilityOrder);
+    }
+
+    public void IssueGatherOrder(KUnit unit)
+    {
+        orderQueue.Clear();
+        bWaitingNewOrder = true;
+        QueueGatherOrder(unit);
+    }
+
+    public void QueueGatherOrder(KUnit unit)
+    {
+        KGatherOrder gatherUnitOrder = new KGatherOrder(this, unit);
+        orderQueue.Enqueue(gatherUnitOrder);
     }
 }

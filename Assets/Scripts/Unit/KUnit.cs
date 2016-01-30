@@ -64,22 +64,26 @@ public class KUnit : KSelectable
         activeBuffs = new List<KBuff>();
     }
 
-    void Reset()
+    virtual protected void Reset()
     {
-        if (autoAttackComponent == null)
-            autoAttackComponent = gameObject.GetComponent<KAutoAttackComponent>();
-        if (defensiveComponent == null)
-            defensiveComponent = gameObject.GetComponent<KDefensiveComponent>();
-        if (movementComponent == null)
-            movementComponent = gameObject.GetComponent<KMovementComponent>();
-        if (inventoryComponent == null)
-            inventoryComponent = gameObject.GetComponent<KInventoryComponent>();
-        if (gatheringComponent == null)
-            gatheringComponent = gameObject.GetComponent<KGatheringComponent>();
-        if (abilityComponent == null)
-            abilityComponent = gameObject.GetComponent<KAbilityComponent>();
-        if (levelComponent == null)
-            levelComponent = gameObject.GetComponent<KLevelComponent>();
+        GetIfNullComponent<KAutoAttackComponent>(autoAttackComponent);
+        GetIfNullComponent<KDefensiveComponent>(defensiveComponent);
+        GetIfNullComponent<KMovementComponent>(movementComponent);
+        GetIfNullComponent<KInventoryComponent>(inventoryComponent);
+        GetIfNullComponent<KGatheringComponent>(gatheringComponent);
+        GetIfNullComponent<KAbilityComponent>(abilityComponent);
+        GetIfNullComponent<KBuildComponent>(buildComponent);
+        GetIfNullComponent<KLevelComponent>(levelComponent);
+        GetIfNullComponent<KResourceComponent>(resourceComponent);
+        GetIfNullComponent<KStructureComponent>(structureComponent);
+    }
+
+    void GetIfNullComponent<T>(Object var) where T : Object
+    {
+        if (var == null)
+        {
+            var = GetComponent<T>();
+        }
     }
 
     // ------- BUFF INTERFACE --------
@@ -163,7 +167,7 @@ public class KUnit : KSelectable
     }
     // ------- END BUFF INTERFACE --------
 
-    public virtual void AddStructureTraits(Dictionary<string, KStructure> teamBuildings)
+    public virtual void AddStructureTraits(Dictionary<string, KUnit> teamBuildings)
     {
         //by default do nothing
         Debug.Log("Add traits.");
@@ -202,6 +206,18 @@ public class KUnit : KSelectable
         if (autoAttackComponent != null)
         {
             if (Vector3.Distance(target.transform.position, transform.position) < autoAttackComponent.attackRange.modifiedValue)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool IsInGatherRange(KUnit target)
+    {
+        if (gatheringComponent != null)
+        {
+            if (Vector3.Distance(target.transform.position, transform.position) < gatheringComponent.gatherRange.modifiedValue)
             {
                 return true;
             }

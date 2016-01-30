@@ -14,7 +14,7 @@ public class KPyroKid : KUnit
         InitializeComponents();
     }
 
-    public override void AddStructureTraits(Dictionary<string, KStructure> teamBuildings)
+    public override void AddStructureTraits(Dictionary<string, KUnit> teamBuildings)
     {
         Debug.Log("Pyro Kid's traits added to team structures!");
     }

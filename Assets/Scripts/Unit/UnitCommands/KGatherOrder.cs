@@ -4,9 +4,9 @@ using System.Collections;
 public class KGatherOrder : KUnitOrder
 {
     public static float GATHERACCEPTRADIUS = 2f;
-    protected KResource gatherTarget;   //TODO: change to gathernode
+    protected KUnit gatherTarget;
 
-    public KGatherOrder(KUnitAI ai, KResource collectTarget)
+    public KGatherOrder(KUnitAI ai, KUnit collectTarget)
     {
         aiController = ai;
         gatherTarget = collectTarget;
@@ -20,9 +20,15 @@ public class KGatherOrder : KUnitOrder
 
     public override void OrderUpdate()
     {
-        if (Vector3.Distance(aiController.transform.position, gatherTarget.transform.position) < GATHERACCEPTRADIUS)
+        if (aiController.unit.IsInAttackRange(gatherTarget))
         {
-            OrderFinished();
+            Debug.Log("Is in gather range!");
+            aiController.unit.StopMoving();
+            aiController.unit.GatherResource(gatherTarget);
+        }
+        else
+        {
+            aiController.unit.MoveToLocation(gatherTarget.transform.position);
         }
     }
 }

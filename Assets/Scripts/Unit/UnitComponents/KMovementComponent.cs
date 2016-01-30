@@ -43,6 +43,14 @@ public class KMovementComponent : KUnitComponent
         }
     }
 
+    override protected void Reset()
+    {
+        base.Reset();
+
+        if (navAgent == null)
+            navAgent = GetComponent<NavMeshAgent>();
+    }
+
     public void MoveToLocation(Vector3 location)
     {
         navAgent.SetDestination(location);

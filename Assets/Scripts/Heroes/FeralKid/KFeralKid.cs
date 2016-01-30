@@ -14,7 +14,7 @@ public class KFeralKid : KUnit
         InitializeComponents();
     }
 
-    public override void AddStructureTraits(Dictionary<string, KStructure> teamBuildings)
+    public override void AddStructureTraits(Dictionary<string, KUnit> teamBuildings)
     {
         Debug.Log("Feral Kid's traits added to team buildings!");
     }
