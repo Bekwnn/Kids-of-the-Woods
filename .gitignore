@@ -22,3 +22,11 @@
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+
+### Vim ###
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~

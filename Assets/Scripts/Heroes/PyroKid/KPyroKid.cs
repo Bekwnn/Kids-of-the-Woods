@@ -8,13 +8,13 @@ public class KPyroKid : KUnit
 {
     void Awake()
     {
-        jsonPath = @"C:\Users\Bekwnn2\Kids of the Woods\Assets\Config\Heroes\PyroKid.json";
+        jsonPath = @"C:\Users\Evan\Kids of the Woods\Assets\Config\Heroes\PyroKid.json";
         jsonName = "pyroKid";
         Initialize();
         InitializeComponents();
     }
 
-    public override void AddStructureTraits(Dictionary<string, KUnit> teamBuildings)
+    public override void AddStructureTraits(Dictionary<string, KStructureComponent> teamBuildings)
     {
         Debug.Log("Pyro Kid's traits added to team structures!");
     }

@@ -17,30 +17,14 @@ public class KUnitAnimations : MonoBehaviour {
 
         positionLastFrame = transform.position;
     }
-
-    void Reset()
-    {
-        if (animator == null)
-            animator = GetComponent<Animator>();
-    }
     
     public void StartAttack()
     {
         animator.SetTrigger("start attack");
     }
-    
+
+    //TODO make attack animations cancelable
     public void CancelAttack()
-    {
-        animator.ResetTrigger("start attack");
-        animator.SetTrigger("cancel attack");
-    }
-
-    public void StartGather()
-    {
-        animator.SetTrigger("start attack");
-    }
-
-    public void CancelGather()
     {
         animator.ResetTrigger("start attack");
         animator.SetTrigger("cancel attack");

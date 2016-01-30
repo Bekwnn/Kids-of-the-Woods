@@ -43,7 +43,7 @@ public class KUnit : KSelectable
     public KBuildComponent buildComponent;
     public KLevelComponent levelComponent;
     public KResourceComponent resourceComponent;
-    public KStructureComponent structureComponent;
+    public Component structureComponent;
 
     protected List<KBuff> activeBuffs;
 
@@ -64,26 +64,22 @@ public class KUnit : KSelectable
         activeBuffs = new List<KBuff>();
     }
 
-    virtual protected void Reset()
+    void Reset()
     {
-        GetIfNullComponent<KAutoAttackComponent>(autoAttackComponent);
-        GetIfNullComponent<KDefensiveComponent>(defensiveComponent);
-        GetIfNullComponent<KMovementComponent>(movementComponent);
-        GetIfNullComponent<KInventoryComponent>(inventoryComponent);
-        GetIfNullComponent<KGatheringComponent>(gatheringComponent);
-        GetIfNullComponent<KAbilityComponent>(abilityComponent);
-        GetIfNullComponent<KBuildComponent>(buildComponent);
-        GetIfNullComponent<KLevelComponent>(levelComponent);
-        GetIfNullComponent<KResourceComponent>(resourceComponent);
-        GetIfNullComponent<KStructureComponent>(structureComponent);
-    }
-
-    void GetIfNullComponent<T>(Object var) where T : Object
-    {
-        if (var == null)
-        {
-            var = GetComponent<T>();
-        }
+        if (autoAttackComponent == null)
+            autoAttackComponent = gameObject.GetComponent<KAutoAttackComponent>();
+        if (defensiveComponent == null)
+            defensiveComponent = gameObject.GetComponent<KDefensiveComponent>();
+        if (movementComponent == null)
+            movementComponent = gameObject.GetComponent<KMovementComponent>();
+        if (inventoryComponent == null)
+            inventoryComponent = gameObject.GetComponent<KInventoryComponent>();
+        if (gatheringComponent == null)
+            gatheringComponent = gameObject.GetComponent<KGatheringComponent>();
+        if (abilityComponent == null)
+            abilityComponent = gameObject.GetComponent<KAbilityComponent>();
+        if (levelComponent == null)
+            levelComponent = gameObject.GetComponent<KLevelComponent>();
     }
 
     // ------- BUFF INTERFACE --------
@@ -167,7 +163,7 @@ public class KUnit : KSelectable
     }
     // ------- END BUFF INTERFACE --------
 
-    public virtual void AddStructureTraits(Dictionary<string, KUnit> teamBuildings)
+    public virtual void AddStructureTraits(Dictionary<string, KStructureComponent> teamBuildings)
     {
         //by default do nothing
         Debug.Log("Add traits.");
@@ -183,7 +179,7 @@ public class KUnit : KSelectable
         }
     }
     
-    public void GatherResource(KUnit target)
+    public void GatherResource(KResourceComponent target)
     {
         Debug.Log("Gathering resource");
         if (gatheringComponent != null)
@@ -213,18 +209,6 @@ public class KUnit : KSelectable
         return false;
     }
 
-    public bool IsInGatherRange(KUnit target)
-    {
-        if (gatheringComponent != null)
-        {
-            if (Vector3.Distance(target.transform.position, transform.position) < gatheringComponent.gatherRange.modifiedValue)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void MoveToLocation(Vector3 location)
     {
         //Debug.Log("Moving to: " + location.ToString());
@@ -239,16 +223,16 @@ public class KUnit : KSelectable
         movementComponent.StopMoving();
     }
 
-    public void CastAbility(KAbility ability)
+    public void CastAbility(KAbility ability, KCastParams castParams)
     {
         Debug.Log("Casting ability");
         if (abilityComponent != null)
         {
-            abilityComponent.CastAbility(ability);
+            abilityComponent.CastAbility(ability, castParams);
         }
     }
 
-    public void BuildStructure(KUnit structure)
+    public void BuildStructure(KStructureComponent structure)
     {
         Debug.Log("Building structure");
         if (buildComponent != null)

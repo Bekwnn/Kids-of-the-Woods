@@ -2,6 +2,16 @@
 using System.IO;
 using UnityEngine;
 
+public enum EAbilitySlot
+{
+	Q,
+	W,
+	E,
+	R,
+	D,
+	F
+}
+
 [Serializable]
 public class JAbilityComponentInfo
 {
@@ -50,8 +60,8 @@ public class KAbilityComponent : KUnitComponent
 
     }
 
-    public void CastAbility(KAbility ability)
-    {
-
-    }
+	public void CastAbility(KAbility ability, KCastParams castParams)
+	{
+		
+	}
 }

@@ -12,12 +12,6 @@ public abstract class KUnitComponent : MonoBehaviour
         //nothing for now
     }
 
-    protected virtual void Reset()
-    {
-        if (unit == null)
-            unit = GetComponent<KUnit>();
-    }
-
     protected T ReadJson<T>(string componentJsonName)
     {
         // read json
