@@ -1,0 +1,31 @@
+"Enchantry" : {
+	"requires" : ["Soul Well 2", "Monster Den"],
+	"cost" : {
+		"wood" : 150,
+		"iron" : 150
+	},
+	"defensive" : {
+		"maxHealth" : 400,
+		"healthRegen" : 3,
+		"armor" : 25,
+		"magicResist" : 0 
+	},
+	"upgrades" : [
+		"upMeleeMinions" : {
+
+		},
+		"upRangedMinions" : {
+			
+		},
+		"avalynnsBlessing" : {
+			
+		},
+		"nevirsRevitalization" : {
+
+		},
+		"markOfRotgar" : {
+
+		}
+	]
+
+}

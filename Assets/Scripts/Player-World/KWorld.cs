@@ -8,6 +8,19 @@ public class KWorld : MonoBehaviour
 {
     // list of current players
     public KGameState gameState;
+	public List<KBuff> globalBuffs;
+
+	public void AddGlobalBuff(KBuff buff)
+	{
+		globalBuffs.Add(buff);
+		//TODO: apply the buff to all applicable units on the map
+	}
+
+	public void RemoveGlobalBuff(KBuff buff)
+	{
+		globalBuffs.Remove(buff);
+		//TODO: apply the buff to all applicable units on the map
+	}
 
     // singleton instance
     protected static KWorld _instance;

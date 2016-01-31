@@ -127,18 +127,24 @@ public class KCameraOrderComponent : MonoBehaviour
 					cameraPawn.owningPlayer.selectedUnits[0].aiController.QueueAbilityCastOrder(abilityToCast, castParams);
 				else
 					cameraPawn.owningPlayer.selectedUnits[0].aiController.IssueAbilityCastOrder(abilityToCast, castParams);
+
+				CancelCast();
 			}
 
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            // cancel ability cast
-			bTryingToCast = false;
-			castParams = new KCastParams();
-			abilityToCast = EAbilitySlot.NONE;
-			targetsToPick = 0;
+            CancelCast();
         }
     }
+
+	public void CancelCast()
+	{
+		bTryingToCast = false;
+		castParams = new KCastParams();
+		abilityToCast = EAbilitySlot.NONE;
+		targetsToPick = 0;
+	}
 
 	protected void PrepareCast(EAbilitySlot abilitySlot)
 	{

@@ -14,8 +14,8 @@ public class KPlayerState : MonoBehaviour
 {
     public KUnit playerHero;
     public KTeamState playerTeam;
-
     public List<KUnit> selectedUnits;
+	public List<KBuff> playerBuffs;
 
     public void SelectUnit(KUnit selected)
     {
@@ -36,4 +36,16 @@ public class KPlayerState : MonoBehaviour
     {
         playerHero.AddStructureTraits(teamBuildings);
     }
+
+	public void AddPlayerBuff(KBuff buff)
+	{
+		playerBuffs.Add(buff);
+		//TODO: apply buff to all relevant units/heroes
+	}
+
+	public void RemovePlayerBuff(KBuff buff)
+	{
+		playerBuffs.Remove(buff);
+		//TODO: remove buff from all relevant units/heroes
+	}
 }
