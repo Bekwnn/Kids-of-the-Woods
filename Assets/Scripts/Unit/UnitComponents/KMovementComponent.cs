@@ -14,7 +14,7 @@ public class JMovementComponentInfo
 /// </summary>
 public class KMovementComponent : KUnitComponent
 {
-    public NavMeshAgent navAgent;
+    public KNavAgent navAgent;
 
     [HideInInspector]
     public KBuffableStat moveSpeed;
@@ -38,8 +38,8 @@ public class KMovementComponent : KUnitComponent
 
         if (navAgent != null)
         {
-            navAgent.speed = moveSpeed.modifiedValue;
-            navAgent.angularSpeed = turnRate.modifiedValue;
+            navAgent.moveSpeed = moveSpeed.modifiedValue;
+            navAgent.turnRate = turnRate.modifiedValue;
         }
     }
 
