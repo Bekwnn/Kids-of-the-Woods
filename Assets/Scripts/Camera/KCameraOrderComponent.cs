@@ -119,6 +119,16 @@ public class KCameraOrderComponent : MonoBehaviour
 			if (castParams.targetUnits == null) castParams.targetUnits = new List<KUnit>();
 			castParams.targetUnits.Add(KCameraPawn.GetUnitUnderScreenPos(Input.mousePosition, cameraPawn.cameraComponent));
 			castParams.targetLocations.Add(KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent));
+
+			//if we've picked all our targets, cast spell
+			if (--targetsToPick <= 0)
+			{
+				if (Input.GetKey(KeyCode.LeftShift))
+					cameraPawn.owningPlayer.selectedUnits[0].aiController.QueueAbilityCastOrder(abilityToCast, castParams);
+				else
+					cameraPawn.owningPlayer.selectedUnits[0].aiController.IssueAbilityCastOrder(abilityToCast, castParams);
+			}
+
         }
         else if (Input.GetMouseButtonDown(1))
         {
@@ -132,7 +142,7 @@ public class KCameraOrderComponent : MonoBehaviour
 
 	protected void PrepareCast(EAbilitySlot abilitySlot)
 	{
-		KCastParams instParams = new KCastParams();
+		castParams = new KCastParams();
 
 		if (cameraPawn.owningPlayer.selectedUnits[0].abilityComponent == null)
 		{
@@ -149,12 +159,12 @@ public class KCameraOrderComponent : MonoBehaviour
 		//get the mode and set
 		if (ability.castMethod == EAbilityCastMethod.ONPRESS)
 		{
-			instParams.targetUnit = KCameraPawn.GetUnitUnderScreenPos(Input.mousePosition, cameraPawn.cameraComponent);
-			instParams.targetLocation = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent);
+			castParams.targetUnit = KCameraPawn.GetUnitUnderScreenPos(Input.mousePosition, cameraPawn.cameraComponent);
+			castParams.targetLocation = KCameraPawn.ScreenPointToGameWorld(Input.mousePosition, cameraPawn.cameraComponent);
 			if (Input.GetKey(KeyCode.LeftShift))
-				cameraPawn.owningPlayer.selectedUnits[0].aiController.QueueAbilityCastOrder(abilityToCast, instParams);
+				cameraPawn.owningPlayer.selectedUnits[0].aiController.QueueAbilityCastOrder(abilityToCast, castParams);
 			else
-				cameraPawn.owningPlayer.selectedUnits[0].aiController.IssueAbilityCastOrder(abilityToCast, instParams);
+				cameraPawn.owningPlayer.selectedUnits[0].aiController.IssueAbilityCastOrder(abilityToCast, castParams);
 		}
 		else
 		{

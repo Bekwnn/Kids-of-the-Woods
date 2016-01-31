@@ -56,7 +56,7 @@ public abstract class KAbility : MonoBehaviour
 
     virtual public void CastActive(KCastParams castParams)
     {
-        if (!bHasActive)           Debug.Log("Ability has no active.");
+        if (!bHasActive) Debug.Log("Ability has no active.");
         else if (abilityLevel < 1) Debug.Log("Spell not yet learned.");
     }
 }
