@@ -1,5 +1,6 @@
 "Enchantry" : {
 	"requires" : ["Soul Well 2", "Monster Den"],
+	"modifiedBy" : ["PyroKid", "Brat"],
 	"cost" : {
 		"wood" : 150,
 		"iron" : 150
@@ -11,10 +12,22 @@
 		"magicResist" : 0 
 	},
 	"upgrades" : [
-		"upMeleeMinions" : {
+		"upMeleeMinions1" : {
 
 		},
-		"upRangedMinions" : {
+		"upMeleeMinions2" : {
+
+		},
+		"upMeleeMinions3" : {
+
+		},
+		"upRangedMinions1" : {
+			
+		},
+		"upRangedMinions2" : {
+			
+		},
+		"upRangedMinions3" : {
 			
 		},
 		"avalynnsBlessing" : {
@@ -24,6 +37,14 @@
 
 		},
 		"markOfRotgar" : {
+
+		}
+	],
+	"units" : [
+		"meleeMinion" : {
+
+		},
+		"rangedMinion" : {
 
 		}
 	]
