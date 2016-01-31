@@ -82,7 +82,7 @@ public class KNavAgent : MonoBehaviour {
 
 	public bool CalculatePath(Vector3 destination, NavMeshPath p)
 	{
-		return NavMesh.CalculatePath(transform.position, destination, NavMesh.AllAreas, p);
+		return NavMesh.CalculatePath(transform.position, destination, areaMask, p);
 	}
 
 	public bool SetDestination(Vector3 target)
