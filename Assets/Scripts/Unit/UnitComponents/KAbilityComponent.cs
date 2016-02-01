@@ -33,6 +33,7 @@ public class KAbilityComponent : KUnitComponent
     public KBuffableStat resourceRegen;
 
     public bool bUsesMana;
+	public int availableSkillPoints;
 
     public KAbility qAbility;
     public KAbility wAbility;
@@ -107,5 +108,42 @@ public class KAbilityComponent : KUnitComponent
 			default:
 				return null;
 		}
+	}
+
+	public bool AllocateSkillPoint(EAbilitySlot abilitySlot)
+	{
+		KAbility abilityToLevel;
+		switch (abilitySlot)
+		{
+			case EAbilitySlot.Q:
+				abilityToLevel = qAbility;
+				break;
+			case EAbilitySlot.W:
+				abilityToLevel = wAbility;
+				break;
+			case EAbilitySlot.E:
+				abilityToLevel = eAbility;
+				break;
+			case EAbilitySlot.R:
+				abilityToLevel = rAbility;
+				break;
+			case EAbilitySlot.D:
+				abilityToLevel = dAbility;
+				break;
+			case EAbilitySlot.F:
+				abilityToLevel = fAbility;
+				break;
+			default:
+				return false;
+		}
+
+		if (abilityToLevel == null) return false;
+		else if (abilityToLevel.abilityLevel < abilityToLevel.abilityMaxLevel)
+		{
+			abilityToLevel.abilityLevel++;
+			availableSkillPoints--;
+			return true;
+		}
+		else return false;
 	}
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 /// </summary>
 public class KCameraOrderComponent : MonoBehaviour
 {
+	//TODO: generalize to player controller and create delegate bindings
     // ref to management component
     public KCameraPawn cameraPawn;
     

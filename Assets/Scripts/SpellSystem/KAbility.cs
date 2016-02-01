@@ -48,6 +48,7 @@ public abstract class KAbility : MonoBehaviour
     public EAbilityCastMethod castMethod;
 
     public int  abilityLevel;
+	public int  abilityMaxLevel;
     public bool bHasActive;
     public bool bActiveNotReady;    // used not just for cooldowns, but also if actives have a requirement to be usable (ex, enemy has to be debuffed with something)
 

@@ -44,6 +44,8 @@ public class KLevelComponent : KUnitComponent
     public void LevelUp()
     {
         //TODO
+		KAbilityComponent abil = GetComponent<KAbilityComponent>();
+		if (abil) abil.availableSkillPoints++;
     }
 
     public void SetLevelTo(int val)
