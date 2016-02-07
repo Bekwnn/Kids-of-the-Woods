@@ -6,5 +6,7 @@ using System.Collections;
 /// </summary>
 public class KStructureComponent : KUnitComponent
 {
-	
+	//Units
+	//Upgrades
+	//Cost
 }

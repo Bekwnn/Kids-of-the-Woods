@@ -1,0 +1,21 @@
+{
+	"Tower" : {
+		"Requires" : {
+			"PyroKid" : false
+		},
+		"Cost" : {
+			"Wood" : 150,
+			"BuildTime" : 15
+		},
+		"Attack" : {
+			"AttackDamage" : 75,
+			"AttackSpeed" : 1,
+			"AttackRange" : 5
+		},
+		"Defensive" : {
+			"MaxHealth" : 750,
+			"HealthRegen" : 3,
+			"Armor" : 40
+		}
+	}
+}

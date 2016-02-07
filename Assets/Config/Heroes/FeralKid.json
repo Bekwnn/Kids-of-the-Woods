@@ -4,7 +4,6 @@
 			"attackDamage": 44,
 			"attackSpeed": 0.7,
 			"attackRange": 5.0,
-			"critChance": 0.0,
 			"critDamage": 2.0
 		},
 		"attackGrowth": {

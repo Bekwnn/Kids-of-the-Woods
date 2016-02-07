@@ -1,0 +1,27 @@
+{
+	"SoulWell" : {
+		"Cost" : {
+			"Wood" : 500,
+			"BuildTime" : 30
+		},
+		"Attack" : {
+			"AttackDamage" : 75,
+			"AttackSpeed" : 1,
+			"AttackRange" : 5
+		},
+		"Defensive" : {
+			"MaxHealth" : 1500,
+			"HealthRegen" : 5,
+			"Armor" : 40,
+			"MagicResist" : 25
+		},
+		"Upgrades" : [
+			"SoulWell2" : {
+				
+			},
+			"SoulWell3" : {
+				
+			}
+		]
+	}
+}

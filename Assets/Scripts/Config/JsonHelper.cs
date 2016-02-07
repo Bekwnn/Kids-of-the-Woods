@@ -6,6 +6,19 @@ using System.Collections.Generic;
 /// </summary>
 public class JsonHelper
 {
+	public static string GetJsonObjectSimple(string jsonString, string handle)
+	{
+		string[] properties = handle.Split('.'); //Allows usage such as GetJsonObjectSimple(jsonFile, "PyroKid.Attack");
+
+		string temp = jsonString;
+
+		foreach (string str in properties)
+		{
+			temp = GetJsonObject(temp, str);
+		}
+
+		return temp;
+	}
 
     public static string GetJsonObject(string jsonString, string handle)
     {

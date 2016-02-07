@@ -4,7 +4,6 @@
 			"attackDamage": 44,
 			"attackSpeed": 0.7,
 			"attackRange": 5.0,
-			"critChance": 0.0,
 			"critDamage": 2.0
 		},
 		"attackGrowth": {
@@ -12,7 +11,7 @@
 			"attackSpeed": 0.1
 		},
 		"movement": {
-			"moveSpeed": 320,
+			"moveSpeed": 3.2,
 			"turnRate": 720
 		},
 		"defensive": {

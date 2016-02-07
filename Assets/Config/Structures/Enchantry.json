@@ -1,0 +1,29 @@
+{
+	"Enchantry" : {
+		"BuiltAfter" : ["SoulWell"],
+		"Cost" : {
+			"Wood" : 150,
+			"Iron" : 150,
+			"BuildTime" : 20
+		},
+		"Defensive" : {
+			"MaxHealth" : 400,
+			"HealthRegen" : 3,
+			"Armor" : 25
+		},
+		"Upgrades" : [
+			"AvalynnsBlessing" : {
+				
+			},
+			"NevirsRevitalization" : {
+
+			},
+			"MarkOfRotgar" : {
+				"Requires" : {
+					"FeralKid" : true
+				}
+
+			}
+		]
+	}
+}

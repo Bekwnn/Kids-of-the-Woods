@@ -1,0 +1,44 @@
+{
+	"Barracks" : {
+		"BuiltAfter" : ["SoulWell"],
+		"Cost" : {
+			"Wood" : 200,
+			"BuildTime" : 15
+		},
+		"Units" : [
+			"MeleeMinion" : {
+
+			},
+			"RangedMinion" : {
+				"Requires" : {
+					"PyroKid" : false
+				}
+
+			},
+			"CasterMinion" : {
+				"Requires" : {
+					"PyroKid" : true
+				}
+
+			}
+		],
+		"Upgrades" : [
+			"UpMeleeMinions1" : {
+				"BuiltAfter" : ["Enchantry"]
+				
+			},
+			"UpMeleeMinions2" : {
+				"BuiltAfter" : ["UpMeleeMinions1", "SoulWell2"]
+				
+			},
+			"UpRangedMinions1" : {
+				"BuiltAfter" : ["Enchantry"]
+				
+			},
+			"UpRangedMinions2" : {
+				"BuiltAfter" : ["UpRangedMinions1", "SoulWell2"]
+				
+			}
+		]
+	}
+}

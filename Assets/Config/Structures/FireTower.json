@@ -1,0 +1,21 @@
+{
+	"FireTower" : {
+		"Requires" : {
+			"PyroKid" : true
+		},
+		"Cost" : {
+			"Wood" : 150,
+			"BuildTime" : 15
+		},
+		"Attack" : {
+			"AttackDamage" : 150,
+			"AttackSpeed" : 0.75,
+			"AttackRange" : 4
+		},
+		"Defensive" : {
+			"MaxHealth" : 650,
+			"HealthRegen" : 2,
+			"Armor" : 50
+		}
+	}
+}

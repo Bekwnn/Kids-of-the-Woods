@@ -15,8 +15,9 @@ public abstract class KUnitComponent : MonoBehaviour
     protected T ReadJson<T>(string componentJsonName)
     {
         // read json
-        string heroJson = JsonHelper.GetJsonObject(File.ReadAllText(unit.jsonPath), unit.jsonName);
-        string componentJson = JsonHelper.GetJsonObject(heroJson, componentJsonName);
-        return JsonUtility.FromJson<T>(componentJson);
+        //string heroJson = JsonHelper.GetJsonObject(File.ReadAllText(unit.jsonPath), unit.jsonName);
+        //string componentJson = JsonHelper.GetJsonObject(heroJson, componentJsonName);
+        string componentJson = JsonHelper.GetJsonObjectSimple(File.ReadAllText(unit.jsonPath), unit.jsonName + "." + componentJsonName);
+		return JsonUtility.FromJson<T>(componentJson);
     }
 }
